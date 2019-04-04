@@ -11,4 +11,19 @@ var config = {
 
 var game = new Phaser.Game(config);
 
-function
+function preload ()
+{
+
+}
+
+function create ()
+{
+
+}
+
+function update () 
+{
+
+}
+
+config.scene
