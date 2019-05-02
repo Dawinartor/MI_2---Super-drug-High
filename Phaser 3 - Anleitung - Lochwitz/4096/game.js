@@ -4,7 +4,7 @@ var game;
 var gameOptions = {
     tileSize : 200,
     tileSpacing : 20,
-    boardSize : {
+    boardSize : { // Weiteres Objetk mit Ausgangspunk für Zeilen & Spalten.
         rows : 4,
         cols : 4
     }
