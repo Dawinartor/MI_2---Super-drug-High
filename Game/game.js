@@ -19,14 +19,14 @@ window.onload = function() {
 
 }
 
-class bootGame extends Phaser.scene {
+class bootGame extends Phaser.Scene {
     constructor () {
         super("BootGame");
     }
 
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
-        this.load.image("Skyline_background.jpg", "./Assets/Sprites/Skyline_background.jpg");
+        this.load.image("Skyline_background.jpg", "../Assets/Sprites/Skyline_background.jpg");
     }
 
     create() {
@@ -34,7 +34,7 @@ class bootGame extends Phaser.scene {
     }
 }
 
-class playGame extends Phaser.scene {
+class playGame extends Phaser.Scene {
     constructor () {
         super("PlayGame");
     }
