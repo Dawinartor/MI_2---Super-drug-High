@@ -8,7 +8,7 @@ window.onload = function() {
     var gameConfig = {
         width: 900,
         height: 900,
-        backgroundColor: 0xffffff,
+        background: 0xffaaff,
         scene: [ bootGame, playGame ]
     }
 
@@ -26,7 +26,8 @@ class bootGame extends Phaser.Scene {
 
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
-        this.load.image("Skyline_background.jpg", "../Assets/Sprites/Skyline_background.jpg");
+        this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
+    
     }
 
     create() {
@@ -39,9 +40,11 @@ class playGame extends Phaser.Scene {
         super("PlayGame");
     }
     create() {
-
+        this.add.image(450, 450, "HintergrundBild");
     }
 }
+
+
 
 function resizeGame() {
     var canvas = document.querySelector("canvas");
