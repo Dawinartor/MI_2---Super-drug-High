@@ -1,7 +1,8 @@
 var game;
 var gameOptions = {
+   // Was muss für unser JumpNRun hier rein?
+    }
 
-}
 
 window.onload = function() {
 
