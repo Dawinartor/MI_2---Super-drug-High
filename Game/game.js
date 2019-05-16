@@ -1,15 +1,21 @@
 var game;
 var gameOptions = {
    // Was muss für unser JumpNRun hier rein?
-    }
+   tileSize : 25,
+   tileSpacing : 0,
+   boardSize : {
+       rows : 36, //Reihen 
+       cols : 18 //Spalten
+   }
+}
 
 
 window.onload = function() {
-
+console.log("ESEL");
     var gameConfig = {
         width: 900,
         height: 900,
-        background: 0xffaaff,
+        backgroundColor: 0xff0000,
         scene: [ bootGame, playGame ]
     }
 
@@ -41,7 +47,7 @@ class playGame extends Phaser.Scene {
         super("PlayGame");
     }
     create() {
-        this.add.image(450, 450, "HintergrundBild");
+      this.add.image(450, 450, "HintergrundBild");
     }
 }
 
