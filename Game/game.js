@@ -39,10 +39,6 @@ class bootGame extends Phaser.Scene {
             frameWidth : gameOptions.tileSize * 10,
             frameHeight : gameOptions.tileSize * 10
         }); // Sprite-Sheet 
-        this.load.spritesheet("Rechteck", "verwendeteImages/Fliese2.png", {
-            frameWidth : gameOptions.tileSize * 10,
-            frameHeight : gameOptions.tileSize * 10
-        });
     
     }
 
