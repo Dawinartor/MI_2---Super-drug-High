@@ -6,7 +6,7 @@ var gameOptions = {
         rows : 36, //Reihen -> Y-Achse
         cols : 36 //Spalten -> X-Achse
     },
-    tweenSpeed: 2000
+    tweenSpeed: 20
 }
 
 
@@ -35,7 +35,14 @@ class bootGame extends Phaser.Scene {
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
-        this.load.image("SpriteSheet","Assets/Sprites/SpriteSheet"); // Sprite-Sheet 
+        this.load.spritesheet("SpriteSheet","verwendeteImages/SpriteSheet.png", {
+            frameWidth : gameOptions.tileSize * 10,
+            frameHeight : gameOptions.tileSize * 10
+        }); // Sprite-Sheet 
+        this.load.spritesheet("Rechteck", "verwendeteImages/Fliese2.png", {
+            frameWidth : gameOptions.tileSize * 10,
+            frameHeight : gameOptions.tileSize * 10
+        });
     
     }
 
@@ -51,23 +58,24 @@ class playGame extends Phaser.Scene {
     }
 
     create() {
+        this.add.image(450, 450, "HintergrundBild");
         this.boardArray = [];
         for(var i = 0; i < gameOptions.boardSize.rows ; i++){
             this.boardArray[i] = [];
             for(var j = 0; j < gameOptions.boardSize.cols; j++){
                 var tilePosition = this.getTilePosition(i,j);
-                this.add.image(tilePosition.x, tilePosition.y, "HintergrundBild");
-                //Veränderung
-                var tile = this.add.sprite(tilePosition.x, tilePosition.y, "SpriteSheet", 0);
-                tile.visible = false;
+                // this.add.image(tilePosition.x, tilePosition.y, "HintergrundBild");
+                //Statt var tile -> var spieler
+                var spieler = this.add.sprite(tilePosition.x, tilePosition.y, "SpriteSheet", 1);
+                spieler.visible = false;
                 this.boardArray[i][j] = {
                     tileValue: 0,
-                    tileSprite: tile
+                    tileSprite: spieler
                 }
             }      
         }
         this.addTile();
-        console.log("Haben wir");
+        console.log("2 wir");
     }
 
     getTilePosition(row, col){
@@ -110,6 +118,7 @@ class playGame extends Phaser.Scene {
             });
         }
     }
+
 }
 
         
@@ -128,3 +137,5 @@ function resizeGame() {
         canvas.style.height = windowHeight + "px";
     }
 }
+
+var bild = document.getElementById
