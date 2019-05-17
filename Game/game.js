@@ -33,6 +33,7 @@ class bootGame extends Phaser.Scene {
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
+        this.load.image("SpriteSheet","Assets/Sprites/SpriteSheet"); // Sprite-Sheet 
     
     }
 
