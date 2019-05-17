@@ -1,11 +1,10 @@
 var game;
 var gameOptions = {
-   // Was muss für unser JumpNRun hier rein?
    tileSize : 25,
    tileSpacing : 0,
    boardSize : {
-       rows : 36, //Reihen 
-       cols : 18 //Spalten
+       rows : 36, //Reihen -> Y-Achse
+       cols : 36 //Spalten -> X-Achse
    }
 }
 
