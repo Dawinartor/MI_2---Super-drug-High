@@ -56,11 +56,31 @@ class playGame extends Phaser.Scene {
             }
         }
     }
+
     getTilePosition(row, col){
-        /*var posX = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
+        var posX = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
         var posY = gameOptions.tileSpacing * (row + 1) + gameOptions.tileSize * (row + 0.5);
         return new Phaser.Geom.Point(posX, posY);
-        */
+        
+    /*
+        getPlayerPosition(rows, cols) {
+        var X1 = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
+        var X2 =
+        var Y1 =
+        var Y2 =
+        var Y3 =
+        var Y4 =
+        var Y5 =
+        var Y6 =
+    */
+
+    getPlayerPosition(row, col) {
+        var posX = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
+        var  posY = gameOptions.tileSpacing * (row + 1) + gameOptions.tileSize * (row + 0.5);
+        var rectangleWidth = gameOptions.tileSize * 2; // 50 px
+        var rectangleheight =gameOptions.tileSize * 4; // 100 px
+
+    }
     }
 }
 
