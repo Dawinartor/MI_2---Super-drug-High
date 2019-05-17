@@ -12,8 +12,8 @@ var gameOptions = {
 window.onload = function() {
 console.log("ESEL");
     var gameConfig = {
-        width: 900,
-        height: 900,
+        width: gameOptions.boardSize.cols * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
+        height: gameOptions.boardSize.rows * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
         backgroundColor: 0xff0000,
         scene: [ bootGame, playGame ]
     }
@@ -24,6 +24,7 @@ console.log("ESEL");
     window.addEventListener("resize", resizeGame);
 
 }
+
 
 class bootGame extends Phaser.Scene {
     constructor () {
@@ -46,11 +47,21 @@ class playGame extends Phaser.Scene {
         super("PlayGame");
     }
     create() {
-      this.add.image(450, 450, "HintergrundBild");
+        for(var i = 0; i < gameOptions.boardSize.rows ; i++){
+            for(var j = 0; j < gameOptions.boardSize.cols; j++){
+                var tilePosition = this.getTilePosition(i,j);
+                this.add.image(tilePosition.x, tilePosition.y, "HintergrundBild");
+                this.add.image(tilePosition.x, tilePosition.y, " ");
+            }
+        }
+    }
+    getTilePosition(row, col){
+        /*var posX = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
+        var posY = gameOptions.tileSpacing * (row + 1) + gameOptions.tileSize * (row + 0.5);
+        return new Phaser.Geom.Point(posX, posY);
+        */
     }
 }
-
-
 
 function resizeGame() {
     var canvas = document.querySelector("canvas");
