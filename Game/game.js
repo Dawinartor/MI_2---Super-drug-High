@@ -35,9 +35,9 @@ class bootGame extends Phaser.Scene {
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
-        this.load.spritesheet("SpriteSheet","verwendeteImages/SpriteSheet.png", {
-            frameWidth : gameOptions.tileSize * 10,
-            frameHeight : gameOptions.tileSize * 10
+        this.load.spritesheet("SpriteSheet","verwendeteImages/SpriteSheet/SpriteSheetHalf.png", {
+            frameWidth : gameOptions.tileSize * 2,
+            frameHeight : gameOptions.tileSize * 2.4
         }); // Sprite-Sheet 
     
     }
@@ -90,10 +90,12 @@ class playGame extends Phaser.Scene {
     }
 
     addTile(){
+        
         var emptyTiles = [];
         for(var i = 0; i < gameOptions.boardSize.rows; i++){
             for(var j = 0; j < gameOptions.boardSize.cols; j++){
                 if(this.boardArray[i][j].tileValue == 0){
+
                     emptyTiles.push({
                         row: i,
                         col: j
@@ -102,7 +104,7 @@ class playGame extends Phaser.Scene {
             }
         }
         if(emptyTiles.length > 0){
-            var chosenTile = Phaser.Utils.Array.GetRandom(emptyTiles);
+            var chosenTile = {row: 34, col: 11};
             this.boardArray[chosenTile.row][chosenTile.col].tileValue = 1;
             this.boardArray[chosenTile.row][chosenTile.col].tileSprite.visible = true;
             this.boardArray[chosenTile.row][chosenTile.col].tileSprite.setFrame(0);
@@ -113,9 +115,11 @@ class playGame extends Phaser.Scene {
                 duration: gameOptions.tweenSpeed
             });
         }
+        console.log(Phaser.Utils.Array.GetRandom(emptyTiles));
     }
 
 }
+
 
         
 function resizeGame() {
