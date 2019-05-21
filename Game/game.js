@@ -8,8 +8,8 @@ var gameOptions = {
     },
     tweenSpeed : 2000, // Lässt das bild langsam kommen -> Alpha-wert
     SinglePlayerFrame : {
-        playerWidth : 32,
-        playerHeight : 48
+        playerWidth : 42,
+        playerHeight : 70
     }
 }
 
