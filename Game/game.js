@@ -6,7 +6,11 @@ var gameOptions = {
         rows : 36, //Reihen -> Y-Achse
         cols : 36 //Spalten -> X-Achse
     },
-    tweenSpeed: 2000 // Lässt das bild langsam kommen -> Alpha-wert
+    tweenSpeed : 2000, // Lässt das bild langsam kommen -> Alpha-wert
+    SinglePlayerFrame : {
+        playerWidth : 32,
+        playerHeight : 48
+    }
 }
 
 
@@ -36,8 +40,8 @@ class bootGame extends Phaser.Scene {
         // Die Skyline -> Hintergrund der geladen wird.
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
         this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/junky_normal sprite-sheet.png", {
-            frameWidth : gameOptions.tileSize * 2,
-            frameHeight : gameOptions.tileSize * 2.4
+            frameWidth : gameOptions.SinglePlayerFrame.playerWidth, // X-Wert
+            frameHeight : gameOptions.SinglePlayerFrame.playerHeight // Y-Wert
         }); // Sprite-Sheet 
     
     }
@@ -62,7 +66,7 @@ class playGame extends Phaser.Scene {
                 var tilePosition = this.getTilePosition(i,j);
                 // this.add.image(tilePosition.x, tilePosition.y, "HintergrundBild");
                 //Statt var tile -> var spieler
-                var spieler = this.add.sprite(/*tilePosition.x*/ 25, /*tilePosition.y*/ 30, "SpriteSheetLinkeseite", 1);
+                var spieler = this.add.sprite(gameOptions.SinglePlayerFrame.playerWidth, gameOptions.SinglePlayerFrame.playerHeight, "SpriteSheetLinkeseite", 3);
 /* Unterschied zwischen unvisible und transparent: 
 * -> Transparent wurde gerendert, nimmt auch Platz ein, mann kann es nur nicht sehen.
    -> Unvisible wurde garnicht gerändert. */
