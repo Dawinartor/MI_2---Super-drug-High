@@ -1,4 +1,5 @@
 var game;
+var spieler;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -14,13 +15,20 @@ var gameOptions = {
 }
 
 
+
 window.onload = function() {
-console.log("ESEL");
     var gameConfig = {
         width: gameOptions.boardSize.cols * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
         height: gameOptions.boardSize.rows * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
         backgroundColor: 0xff0000,
-        scene: [ bootGame, playGame ]
+        scene: [ bootGame, playGame ],
+        physics : {
+            default : 'arcade',
+            arcade : {
+                gravity : {y : 300},
+                debug : false
+            }
+        }
     }
 
     game = new Phaser.Game(gameConfig);
@@ -49,6 +57,7 @@ class bootGame extends Phaser.Scene {
     create() {
         this.scene.start("PlayGame");
         console.log("Blub");
+        // TODO - Write Update scene
     }
 }
 
@@ -66,7 +75,10 @@ class playGame extends Phaser.Scene {
                 var tilePosition = this.getTilePosition(i,j);
                 // this.add.image(tilePosition.x, tilePosition.y, "HintergrundBild");
                 //Statt var tile -> var spieler
-                var spieler = this.add.sprite(gameOptions.SinglePlayerFrame.playerWidth, gameOptions.SinglePlayerFrame.playerHeight, "SpriteSheetLinkeseite", 3);
+                spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 3);
+
+                spieler.setCollideWorldBounds(true);
+
 /* Unterschied zwischen unvisible und transparent: 
 * -> Transparent wurde gerendert, nimmt auch Platz ein, mann kann es nur nicht sehen.
    -> Unvisible wurde garnicht gerändert. */
@@ -75,10 +87,10 @@ class playGame extends Phaser.Scene {
                     tileValue: 0,
                     tileSprite: spieler // Unsere Figur
                 }
-            }      
+            }
         }
        // this.addTile();
-        console.log("2 wir");
+
     }
 
     getTilePosition(row, col){
