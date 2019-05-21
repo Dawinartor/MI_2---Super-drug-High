@@ -1,6 +1,6 @@
 var game;
 var player;
-var coursers;
+var coursers; 
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -35,8 +35,11 @@ class bootGame extends Phaser.Scene {
     }
 
     preload() {
-        game.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
-        game.load.spritesheet("SpriteSheet","verwendeteImages/SpriteSheet/SpriteSheetHalf.png", 25,25,7);
+        this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
+        this.load.spritesheet("SpriteSheet","verwendeteImages/SpriteSheet/SpriteSheetHalf.png", {
+            frameWidth : gameOptions.tileSize * 2,
+            frameHeight : gameOptions.tileSize * 2.4
+        });
     }
 
     create() {
@@ -53,7 +56,7 @@ class playGame extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(0, 0, "HintergrundBild");
+        this.add.image(450, 450, "HintergrundBild");
  
         player = game.add.sprite(32, 260, "SpriteSheet");
  
@@ -64,6 +67,7 @@ class playGame extends Phaser.Scene {
         player.animations.add("right", [4, 5, 6], 6, true);
  
         this.cursors = game.input.keyboard.createCursorKeys();
+        
     
     }
 
