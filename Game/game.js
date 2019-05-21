@@ -35,7 +35,7 @@ class bootGame extends Phaser.Scene {
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
-        this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/SpriteSheetHalf.png", {
+        this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/junky_normal sprite-sheet.png", {
             frameWidth : gameOptions.tileSize * 2,
             frameHeight : gameOptions.tileSize * 2.4
         }); // Sprite-Sheet 
@@ -62,7 +62,7 @@ class playGame extends Phaser.Scene {
                 var tilePosition = this.getTilePosition(i,j);
                 // this.add.image(tilePosition.x, tilePosition.y, "HintergrundBild");
                 //Statt var tile -> var spieler
-                var spieler = this.add.sprite(/*tilePosition.x*/ 25, /*tilePosition.y*/ 3, "SpriteSheetLinkeseite", 1);
+                var spieler = this.add.sprite(/*tilePosition.x*/ 25, /*tilePosition.y*/ 30, "SpriteSheetLinkeseite", 1);
 /* Unterschied zwischen unvisible und transparent: 
 * -> Transparent wurde gerendert, nimmt auch Platz ein, mann kann es nur nicht sehen.
    -> Unvisible wurde garnicht gerändert. */
