@@ -58,9 +58,9 @@ class playGame extends Phaser.Scene {
     create() {
         this.add.image(450, 450, "HintergrundBild");
  
-        player = game.add.sprite(32, 260, "SpriteSheet");
+        player = this.add.sprite(32, 260, "SpriteSheet");
  
-        game.physics.arcade.enable(player);
+        player.physics.arcade.active(true);
         player.body.collideWorldBounds = true;
  
         player.animations.add("left", [0, 1, 2], 6, true);
