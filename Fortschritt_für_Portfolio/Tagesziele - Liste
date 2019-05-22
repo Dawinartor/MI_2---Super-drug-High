@@ -1,4 +1,9 @@
+Tagesziel für 17.05.2019:
+	* Figur auf das Spielfeld stellen
 
+ - Unterziele für das Tagesziel:
+	* Dem Spielfeld eine Logik geben.
+	* Anhand dieser Logik den Spieler statisch bewegen können.
 
 Tagesziel für 21.05.2019:
 	* Bewegende Figur im Spielfeld
@@ -7,4 +12,6 @@ Tagesziel für 21.05.2019:
 	* Keymapping -> Das Eingeben der Tasten soll ein Objekt erstellen
 				    das erzeugte Objekt soll den Spieler auf dem Spielfeld manipulieren.
 				 
+Tagesziel für 24.05.2019:
+	*
 	
