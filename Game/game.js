@@ -127,6 +127,8 @@ class playGame extends Phaser.Scene {
 
     update(){
 
+        // Wie siehts aus mit Switch-Case statt if-Bedingungen?
+
         if(cursors.left.isDown){
             spieler.setVelocityX(-160);
             spieler.anims.play("left", true);
