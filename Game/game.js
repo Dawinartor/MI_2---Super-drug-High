@@ -16,9 +16,9 @@ var gameOptions = {
         height : 36, //Reihen -> Y-Achse
         width : 36 //Spalten -> X-Achse
     },
-    backgroundMoveToRight : {
+    backgroundStay : {
         bgY : 450,
-        bgX : 300 
+        bgX : 450 
     },
     SinglePlayerFrame : {
         playerWidth : 42,
@@ -86,7 +86,7 @@ class playGame extends Phaser.Scene {
 
 
     create() {
-        hintergrund = this.add.image(bgX, bgY, "HintergrundBild");
+        hintergrund = this.add.image(gameOptions.backgroundStay.bgX , gameOptions.backgroundStay.bgY, "HintergrundBild");
         hintergrund.wrap = true;
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
@@ -125,8 +125,6 @@ class playGame extends Phaser.Scene {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
             spieler.setVelocityX(-60);
-            bgX += 25;
-            console.log(hintergrund);
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
