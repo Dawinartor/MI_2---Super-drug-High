@@ -5,6 +5,7 @@ Tagesziel für 17.05.2019:
 	* Dem Spielfeld eine Logik geben.
 	* Anhand dieser Logik den Spieler statisch bewegen können.
 
+
 Tagesziel für 21.05.2019:
 	* Bewegende Figur im Spielfeld
 	
@@ -14,10 +15,11 @@ Tagesziel für 21.05.2019:
 				 
 Tagesziel für 23.05.2019:
 	* Springen auf dem leeren Boden 
-	* Item wird berührt und Regenbogen Farben auf dem Bildschirm
+	* Platformen zum stehen, Weltelemente bauen.
 
  - Unterziele für das Tagesziel:
 	* Code aufräumen, nur noch das was wirklich benötigt wird.
 
+
 Tagesziel für 24.05.2019
-	
+	* Item wird berührt und Regenbogen Farben auf dem Bildschirm

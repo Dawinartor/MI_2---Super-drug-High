@@ -1,19 +1,30 @@
 var game;
+var abstandX;
+var bgY = 450;
+var bgX = 300;
 var spieler;
+var bodenStueck;
 var cursors;
+var hintergrund;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
     boardSize : {
+        maxHeight : 900, // Um die Welt zu definieren
+        maxWidth : 900, // Um die Welt zu definieren
         //Reihen -> Y-Achse
-        rows : 36, //Reihen -> Y-Achse
-        cols : 36 //Spalten -> X-Achse
+        height : 36, //Reihen -> Y-Achse
+        width : 36 //Spalten -> X-Achse
     },
-    tweenSpeed : 2000, // Lässt das bild langsam kommen -> Alpha-wert
+    backgroundMoveToRight : {
+        bgY : 450,
+        bgX : 300 
+    },
     SinglePlayerFrame : {
         playerWidth : 42,
         playerHeight : 70
     }
+
 }
 
 
@@ -21,8 +32,8 @@ var gameOptions = {
 
 window.onload = function() {
     var gameConfig = {
-        width: gameOptions.boardSize.cols * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
-        height: gameOptions.boardSize.rows * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
+        width: gameOptions.boardSize.width * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
+        height: gameOptions.boardSize.height * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
         backgroundColor: 0xff0000,
         scene: [ bootGame, playGame ],
         physics : {
@@ -75,9 +86,11 @@ class playGame extends Phaser.Scene {
 
 
     create() {
-        this.add.image(450, 450, "HintergrundBild");
-        var bodenStueck = this.physics.add.staticGroup();
-        bodenStueck.create(25, 850, "Bodenteil");
+        hintergrund = this.add.image(bgX, bgY, "HintergrundBild");
+        hintergrund.wrap = true;
+        bodenStueck = this.physics.add.staticGroup();
+        this.bauePlatformX25();
+      
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
         spieler.setBounce(0.3);
@@ -112,11 +125,15 @@ class playGame extends Phaser.Scene {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
             spieler.setVelocityX(-60);
+            bgX += 25;
+            console.log(hintergrund);
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
             spieler.setVelocityX(60);
+            hintergrund.setVelocityX-=60;
             spieler.anims.play("right", true);
+            
         }
         else{
             spieler.setVelocityX(0);
@@ -129,6 +146,25 @@ class playGame extends Phaser.Scene {
         }
      }
 
+     bauePlatformX25() {
+        abstandX = 0;
+        for (var i = 0; i < 4; i++) {
+            abstandX += gameOptions.tileSize;
+            bodenStueck.create(abstandX, 850, "Bodenteil");
+            console.log(abstandX);
+        }
+    }
+/*
+    bauePlatformRandom_X_Y() {
+        for (var X = 0; X < gameOptions.boardSize.maxWidth;X += 25) {
+            for(var Y = 0; Y < ) {
+
+            }
+            bodenStueck.create(abstandX, 850, "Bodenteil");
+            console.log(abstandX);
+        }
+    }
+*/
   }
 
 
