@@ -114,21 +114,8 @@ class playGame extends Phaser.Scene {
 /* Unterschied zwischen unvisible und transparent: 
 * -> Transparent wurde gerendert, nimmt auch Platz ein, mann kann es nur nicht sehen.
    -> Unvisible wurde garnicht gerändert. */
-
-                /*spieler.visible = true;
-                this.boardArray[i][j] = {
-                    tileValue: 0,
-                    tileSprite: spieler // Unsere Figur
-                }*/
-            }
-    
-       // this.addTile();
-
-
     update(){
-
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
-
         if(cursors.left.isDown){
             spieler.setVelocityX(-10);
             spieler.anims.play("left", true);
@@ -147,55 +134,7 @@ class playGame extends Phaser.Scene {
             spieler.setVelocityY(-330);
         }
     }
-    getTilePosition(row, col){
-        var posX = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
-        var posY = gameOptions.tileSpacing * (row + 1) + gameOptions.tileSize * (row + 0.5);
-        return new Phaser.Geom.Point(posX, posY);
-    }
     
-// Meine eigene Methode, um den Spieler zu bekommen
-    getPlayerPosition(row, col) {
-        var posX = gameOptions.tileSpacing * (col + 1) + gameOptions.tileSize * (col + 0.5);
-        var  posY = gameOptions.tileSpacing * (row + 1) + gameOptions.tileSize * (row + 0.5);
-        var rectangleWidth = gameOptions.tileSize * 2; // 50 px
-        var rectangleheight = gameOptions.tileSize * 4; // 100 px
-        return new Phaser.Geom.Rectangle(posX, posY, rectangleWidth, rectangleheight); // Rechteck wird erzeugt -> Unser Spieler.
-
-    }
-
-
-
-/*
-    addTile(){
-        var emptyTiles = [];
-        for(var i = 0; i < gameOptions.boardSize.rows; i++){
-            for(var j = 0; j < gameOptions.boardSize.cols; j++){
-                if(this.boardArray[i][j].tileValue == 0){
-                    // True, wenn boardArray i == 0, j == 0
-                    emptyTiles.push({ 
-                    // Koordinaten des neuen Tiles
-                        row: i,
-                        col: j
-                    })
-                }
-            }
-        }
-        if(emptyTiles.length > 0){
-            var chosenTile = Phaser.Utils.Array.GetRandom(emptyTiles);
-            this.boardArray[chosenTile.row][chosenTile.col].tileValue = 1;
-            this.boardArray[chosenTile.row][chosenTile.col].tileSprite.visible = true;
-            this.boardArray[chosenTile.row][chosenTile.col].tileSprite.setFrame(0);
-            this.boardArray[chosenTile.row][chosenTile.col].tileSprite.alpha = 0;
-            this.tweens.add({
-                targets: [this.boardArray[chosenTile.row][chosenTile.col].tileSprite],
-                alpha: 1,
-                duration: gameOptions.tweenSpeed //Tween macht die Animation aus
-            });
-        }
-        console.log(Phaser.Utils.Array.GetRandom(emptyTiles));
-        }
-*/
-
    }
 
 
