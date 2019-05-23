@@ -111,11 +111,11 @@ class playGame extends Phaser.Scene {
     update() {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
-            spieler.setVelocityX(-1);
+            spieler.setVelocityX(-60);
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
-            spieler.setVelocityX(1);
+            spieler.setVelocityX(60);
             spieler.anims.play("right", true);
         }
         else{
@@ -130,6 +130,7 @@ class playGame extends Phaser.Scene {
      }
 
   }
+
 
 
 function resizeGame() {
