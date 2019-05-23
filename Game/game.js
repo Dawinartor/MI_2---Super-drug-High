@@ -90,6 +90,7 @@ class playGame extends Phaser.Scene {
         hintergrund.wrap = true;
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
+        this.bauePlatformRandom_X_Y();
       
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
@@ -152,17 +153,20 @@ class playGame extends Phaser.Scene {
             console.log(abstandX);
         }
     }
-/*
-    bauePlatformRandom_X_Y() {
-        for (var X = 0; X < gameOptions.boardSize.maxWidth;X += 25) {
-            for(var Y = 0; Y < ) {
 
+    bauePlatformRandom_X_Y() {
+       var positionY_boden = 0;
+        var positionX_boden = 0;
+        for (var X = 0; X < 4 ;X++) {
+            for(var Y = 0; Y < 4 ; Y++) {
+                positionY_boden += 75;
+                positionX_boden += 50;
+                bodenStueck.create(positionX_boden, positionY_boden, "Bodenteil")
             }
-            bodenStueck.create(abstandX, 850, "Bodenteil");
             console.log(abstandX);
         }
     }
-*/
+
   }
 
 
