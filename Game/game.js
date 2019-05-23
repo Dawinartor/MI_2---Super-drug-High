@@ -51,11 +51,11 @@ class bootGame extends Phaser.Scene {
     preload() {
         // Die Skyline -> Hintergrund der geladen wird.
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
+        this.load.image("Bodenteil", "verwendeteImages/Block.jpg");
         this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/junky_normal sprite-sheet.png", {
             frameWidth : gameOptions.SinglePlayerFrame.playerWidth, // X-Wert
             frameHeight : gameOptions.SinglePlayerFrame.playerHeight // Y-Wert
         }); // Sprite-Sheet 
-        this.load.image("Bodenteil", "verwendeteImages/Block.jpg");
     }
 
     create() {
@@ -76,8 +76,8 @@ class playGame extends Phaser.Scene {
 
     create() {
         this.add.image(450, 450, "HintergrundBild");
-        var boden = this.physics.add.staticGroup();
-        boden.create(25, 900, "Bodenteil");
+        var bodenStueck = this.physics.add.staticGroup();
+        bodenStueck.create(25, 850, "Bodenteil");
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
         spieler.setBounce(0.3);
@@ -102,8 +102,8 @@ class playGame extends Phaser.Scene {
             });
 
             cursors = this.input.keyboard.createCursorKeys();
-            this.physics.add.collider(spieler, boden);
-
+            this.physics.add.collider(spieler, bodenStueck);
+        }
 
 /* Unterschied zwischen unvisible und transparent: 
 * -> Transparent wurde gerendert, nimmt auch Platz ein, mann kann es nur nicht sehen.
@@ -128,8 +128,8 @@ class playGame extends Phaser.Scene {
             spieler.setVelocityY(-330);
         }
      }
+
   }
-}
 
 
 function resizeGame() {
