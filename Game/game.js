@@ -87,7 +87,7 @@ class playGame extends Phaser.Scene {
 
     create() {
         hintergrund = this.add.image(gameOptions.backgroundStay.bgX , gameOptions.backgroundStay.bgY, "HintergrundBild");
-        hintergrund.wrap = true;
+        //hintergrund
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
       
@@ -113,7 +113,8 @@ class playGame extends Phaser.Scene {
                 frameRate : 10,
                     repeat : -1
             });
-
+            this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
+            this.cameras.main.setZoom(1);
             cursors = this.input.keyboard.createCursorKeys();
             this.physics.add.collider(spieler, bodenStueck);
         }
@@ -125,11 +126,12 @@ class playGame extends Phaser.Scene {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
             spieler.setVelocityX(-60);
+            spieler.x-=2.5;
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
             spieler.setVelocityX(60);
-            hintergrund.setVelocityX-=60;
+            spieler.x+=2.5;
             spieler.anims.play("right", true);
             
         }
