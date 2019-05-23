@@ -86,7 +86,7 @@ class playGame extends Phaser.Scene {
 
                 // Spieler Position & Physik wird definiert : 
                 spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
-                spieler.setBounce(0.5);
+                spieler.setBounce(0.3);
                 spieler.setCollideWorldBounds(true);
 
                 this.anims.create({
@@ -130,19 +130,20 @@ class playGame extends Phaser.Scene {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
 
         if(cursors.left.isDown){
-            spieler.setVelocityX(-160);
+            spieler.setVelocityX(-10);
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
-            spieler.setVelocityX(160);
+            spieler.setVelocityX(10);
             spieler.anims.play("right", true);
         }
         else{
             spieler.setVelocityX(0);
             spieler.anims.play("turn");
         }
+        //console.log(spieler.y);
         // Wenn Spieler Taste dückt && Wenn Figur auf definierten Boden steht
-        if(cursors.up.isDown && spieler.body.touching.down ){
+        if(cursors.up.isDown && (spieler.body.touching.down ||spieler.y == 865) ){
             spieler.setVelocityY(-330);
         }
     }
