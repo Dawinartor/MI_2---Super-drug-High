@@ -183,6 +183,17 @@ class playGame extends Phaser.Scene {
             console.log(abstandX);
         }
     }
+        baueEinfachePlatformRandom() {
+        let positionY_boden = 0;
+        let positionX_boden = 0;
+        var randomNummber;
+        for ( let i = 0; i < 300; i += 50) {// i = Anzahl der Steine auf dem Feld. 
+            randomNummber = Math.floor((Math.random() * 900) + 1);
+           // positionX_boden += getRandomNummber();
+          //  positionY_boden += getRandomNummber();
+            bodenStueck.create(i, randomNummber, "Bodenteil");
+        }
+    }
 
   }
 
@@ -197,7 +208,7 @@ class playGame1 extends Phaser.Scene {
 
     create() {
         console.log("level1");
-        hintergrund = this.add.image(gameOptions.backgroundStay.bgX , gameOptions.backgroundStay.bgY, "HintergrundBild");
+        hintergrund = this.add.image(gameOptions.mapSize.bgX , gameOptions.mapSize.bgY, "HintergrundBild");
         //hintergrund
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
@@ -288,7 +299,7 @@ class playGame1 extends Phaser.Scene {
     baueEinfachePlatformRandom() {
         let positionY_boden = 0;
         let positionX_boden = 0;
-        var randomNummber
+        var randomNummber;
         for ( let i = 0; i < 300; i += 50) {// i = Anzahl der Steine auf dem Feld. 
             randomNummber = Math.floor((Math.random() * 900) + 1);
            // positionX_boden += getRandomNummber();
