@@ -16,7 +16,7 @@ var gameOptions = {
         height : 36, //Reihen -> Y-Achse
         width : 36 //Spalten -> X-Achse
     },
-    backgroundStay : {
+    mapSize : {
         bgY : 450,
         bgX : 450 
     },
@@ -86,11 +86,12 @@ class playGame extends Phaser.Scene {
 
 
     create() {
-        hintergrund = this.add.image(gameOptions.backgroundStay.bgX , gameOptions.backgroundStay.bgY, "HintergrundBild");
+        hintergrund = this.add.image(gameOptions.mapSize.bgX , gameOptions.mapSize.bgY, "HintergrundBild");
         //hintergrund
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
-        this.bauePlatformRandom_X_Y();
+        //this.bauePlatformRandom_X_Y();
+        this.baueEinfachePlatformRandom();
       
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
@@ -114,11 +115,15 @@ class playGame extends Phaser.Scene {
                 frameRate : 10,
                     repeat : -1
             });
-            this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
-            this.cameras.main.setZoom(1);
+
+            //this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
+            //this.cameras.main.setZoom(1);
             cursors = this.input.keyboard.createCursorKeys();
             this.physics.add.collider(spieler, bodenStueck);
+            this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
+            this.cameras.main.startFollow(spieler);
         }
+
 
 /* Unterschied zwischen unvisible und transparent: 
 * -> Transparent wurde gerendert, nimmt auch Platz ein, mann kann es nur nicht sehen.
@@ -155,6 +160,7 @@ class playGame extends Phaser.Scene {
             console.log(abstandX);
         }
     }
+  
 
     bauePlatformRandom_X_Y() {
        var positionY_boden = 0;
@@ -169,7 +175,27 @@ class playGame extends Phaser.Scene {
         }
     }
 
-  }
+    baueEinfachePlatformRandom() {
+        let positionY_boden = 0;
+        let positionX_boden = 0;
+        var randomNummber
+        for ( let i = 0; i < 300; i += 50) {// i = Anzahl der Steine auf dem Feld. 
+            randomNummber = Math.floor((Math.random() * 900) + 1);
+           // positionX_boden += getRandomNummber();
+          //  positionY_boden += getRandomNummber();
+            bodenStueck.create(i, randomNummber, "Bodenteil");
+        }
+    }
+
+  /*  getRandomNummber() {
+        //const minNummber = 10;
+        const maxNummber = 890;
+        var randomNummber = Math.floor((Math.random() * maxNummber) + 1);
+        return randomNummber;
+    }
+*/
+}
+
 
 
 
