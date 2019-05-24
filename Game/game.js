@@ -6,6 +6,7 @@ var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
+var cam;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -90,7 +91,7 @@ class playGame extends Phaser.Scene {
         //hintergrund
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
-        this.bauePlatformRandom_X_Y();
+        //this.bauePlatformRandom_X_Y();
       
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
@@ -115,7 +116,11 @@ class playGame extends Phaser.Scene {
                     repeat : -1
             });
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
-            this.cameras.main.setZoom(1);
+            this.cameras.main.setBounds(0, 0, 420 * 2, 176);
+            cam = this.cameras.main;
+            //this.cameras.main.setScrollX(spieler, true, 0.08, 0.08);
+            //this.camera.marginBottom.startsWith()
+            //this.cameras.main.setZoom(9);
             cursors = this.input.keyboard.createCursorKeys();
             this.physics.add.collider(spieler, bodenStueck);
         }
@@ -127,12 +132,12 @@ class playGame extends Phaser.Scene {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
             spieler.setVelocityX(-60);
-            spieler.x-=2.5;
+            hintergrund.setScrollX+=1.5;
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
             spieler.setVelocityX(60);
-            spieler.x+=2.5;
+            cam.x-=0.5;
             spieler.anims.play("right", true);
             
         }
