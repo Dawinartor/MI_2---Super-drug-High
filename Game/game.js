@@ -90,8 +90,9 @@ class playGame extends Phaser.Scene {
         hintergrund = this.add.image(gameOptions.mapSize.bgX , gameOptions.mapSize.bgY, "HintergrundBild");
         //hintergrund
         bodenStueck = this.physics.add.staticGroup();
-        this.bauePlatformX25();
-        this.baueEinfachePlatformRandom();
+       // this.bauePlatformX25();
+       // this.baueEinfachePlatformRandom();
+       this.bauePlatformMitParameter(99);
       
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
@@ -157,7 +158,7 @@ class playGame extends Phaser.Scene {
             this.scene.start("PlayGame1");
         }
         else{
-            console.log("SpasstPos");
+          //  console.log("SpasstPos");
         }
      }
 
@@ -179,7 +180,7 @@ class playGame extends Phaser.Scene {
                 positionX_boden += 50;
                 bodenStueck.create(positionX_boden, positionY_boden, "Bodenteil")
             }
-            console.log(abstandX);
+           // console.log(abstandX);
         }
     }
 
@@ -199,10 +200,19 @@ class playGame extends Phaser.Scene {
         }
     }
 
-    
+    bauePlatformMitParameter(anzahlBloecke) {
+        // Schleife für x-Achse
+        for (let x = 0; x < 900; x+= 70) {
+            var randomNummber = Math.floor((Math.random() * 150) + 85);
+            for (let y = 0; y < 900; y += randomNummber) {
+                    bodenStueck.create(x, y, "Bodenteil");
+                
+            }
+        }
+    }
 
     
-  }
+}
 
 //----------ERZEUGE LEVEL 1-----------------------------------------------------------------------------------------------
 
