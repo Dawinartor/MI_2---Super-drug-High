@@ -40,7 +40,7 @@ window.onload = function() {
         physics : {
             default : 'arcade',
             arcade : {
-                gravity : {y : 300},
+                gravity : {y : 400},
                 debug : false
             }
         }
@@ -157,7 +157,7 @@ class playGame extends Phaser.Scene {
             this.scene.start("PlayGame1");
         }
         else{
-            console.log("SpasstPos : " + spieler.x);
+            console.log("SpasstPos");
         }
      }
 
@@ -187,11 +187,15 @@ class playGame extends Phaser.Scene {
         let positionY_boden = 0;
         let positionX_boden = 0;
         var randomNummber;
-        for ( let i = 0; i < 300; i += 50) {// i = Anzahl der Steine auf dem Feld. 
+            
+        for ( let i = 0; i < 900; i += 50) {// i = Anzahl der Steine auf dem Feld. 
             randomNummber = Math.floor((Math.random() * 900) + 1);
            // positionX_boden += getRandomNummber();
           //  positionY_boden += getRandomNummber();
-            bodenStueck.create(i, randomNummber, "Bodenteil");
+            if(randomNummber > 800 ){
+                bodenStueck.create(i, randomNummber, "Bodenteil");
+            }
+
         }
     }
 
