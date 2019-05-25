@@ -91,7 +91,6 @@ class playGame extends Phaser.Scene {
         //hintergrund
         bodenStueck = this.physics.add.staticGroup();
         this.bauePlatformX25();
-        //this.bauePlatformRandom_X_Y();
         this.baueEinfachePlatformRandom();
       
         // Spieler Position & Physik wird definiert : 
@@ -183,6 +182,7 @@ class playGame extends Phaser.Scene {
             console.log(abstandX);
         }
     }
+
         baueEinfachePlatformRandom() {
         let positionY_boden = 0;
         let positionX_boden = 0;
@@ -195,6 +195,9 @@ class playGame extends Phaser.Scene {
         }
     }
 
+    
+
+    
   }
 
 //----------ERZEUGE LEVEL 1-----------------------------------------------------------------------------------------------
