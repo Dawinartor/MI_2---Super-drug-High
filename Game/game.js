@@ -7,6 +7,7 @@ var bodenStueck;
 var cursors;
 var hintergrund;
 var cam;
+var items;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -68,6 +69,7 @@ class bootGame extends Phaser.Scene {
             frameWidth : gameOptions.SinglePlayerFrame.playerWidth, // X-Wert
             frameHeight : gameOptions.SinglePlayerFrame.playerHeight // Y-Wert
         }); // Sprite-Sheet 
+        this.load.image("red", "verwendeteImages/Fliese2.png");
     }
 
     create() {
@@ -92,7 +94,7 @@ class playGame extends Phaser.Scene {
         bodenStueck = this.physics.add.staticGroup();
        // this.bauePlatformX25();
        // this.baueEinfachePlatformRandom();
-       this.bauePlatformMitParameter(99);
+       //this.bauePlatformMitParameter(99);
       
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
@@ -116,6 +118,21 @@ class playGame extends Phaser.Scene {
                 frameRate : 10,
                     repeat : -1
             });
+        
+            items = this.physics.add.group({
+            key: 'red',
+            repeat: 3,
+            setXY: { x: 100, y: 0, stepX: 100 }
+            });
+        
+            items.children.iterate(function (child) {
+                child.setCollideWorldBounds(true);
+                child.setScale(0.5);
+
+                //child.setBounceY(Phaser.Math.FloatBetween(0, 0));
+
+            });
+        
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
             this.cameras.main.setBounds(0, 0, 420 * 2, 176);
             cam = this.cameras.main;
@@ -123,10 +140,12 @@ class playGame extends Phaser.Scene {
             //this.camera.marginBottom.startsWith()
             //this.cameras.main.setZoom(9);
             cursors = this.input.keyboard.createCursorKeys();
+            this.physics.add.collider(items, bodenStueck);
             this.physics.add.collider(spieler, bodenStueck);
             this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
             this.cameras.main.startFollow(spieler);
         }
+    
 
 
 /* Unterschied zwischen unvisible und transparent: 
@@ -171,6 +190,7 @@ class playGame extends Phaser.Scene {
         }
     }
 
+    /*
     bauePlatformRandom_X_Y() {
        var positionY_boden = 0;
         var positionX_boden = 0;
@@ -182,7 +202,7 @@ class playGame extends Phaser.Scene {
             }
            // console.log(abstandX);
         }
-    }
+    }*/
 
         baueEinfachePlatformRandom() {
         let positionY_boden = 0;
