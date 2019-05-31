@@ -21,7 +21,7 @@ var gameOptions = {
     },
     mapSize : {
         bgY : 450,
-        bgX : 450 
+        bgX : 1 
     },
     SinglePlayerFrame : {
         playerWidth : 42,
@@ -185,9 +185,11 @@ class playGame extends Phaser.Scene {
 
             
 
+            });
+            //this.items.allowDrag = true;
         
-            this.cameras.main.startFollow(spieler, true);
-            this.cameras.main.setBounds(0, 0, 420 * 2, 176);
+            this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
+            this.cameras.main.setBounds(0, 0, 900 * 2, 176);
             cam = this.cameras.main;
             //this.cameras.main.setScrollX(spieler, true, 0.08, 0.08);
             //this.camera.marginBottom.startsWith()
@@ -224,8 +226,8 @@ class playGame extends Phaser.Scene {
         }
         else if(cursors.right.isDown){
             spieler.setVelocityX(10);
-          //  cam.x -= 0.5;
-          // item.setVelocityX(-10);
+            cam.x -= 0.5;
+            item.setVelocityX(-10);
             spieler.anims.play("right", true);
             
         }
@@ -270,6 +272,7 @@ class playGame extends Phaser.Scene {
         }
     }*/
 
+    /*
         baueEinfachePlatformRandom() {
         var randomNummber;
             
