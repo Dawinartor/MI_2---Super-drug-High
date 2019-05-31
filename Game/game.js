@@ -325,13 +325,6 @@ class playGame1 extends Phaser.Scene {
         }
     }
 
-  /*  getRandomNummber() {
-        //const minNummber = 10;
-        const maxNummber = 890;
-        var randomNummber = Math.floor((Math.random() * maxNummber) + 1);
-        return randomNummber;
-    }
-*/
 }
 
 
