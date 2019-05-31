@@ -144,6 +144,7 @@ class playGame extends Phaser.Scene {
             this.physics.add.collider(spieler, bodenStueck);
             this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
             this.cameras.main.startFollow(spieler);
+            this.physics.add.overlap(spieler, items, collectItemsOne, null, this);
         }
     
 
@@ -229,6 +230,10 @@ class playGame extends Phaser.Scene {
                 
             }
         }
+    }
+    
+    collectItemsOne(spieler, red){
+        red.disableBody(true, true);
     }
 
     
