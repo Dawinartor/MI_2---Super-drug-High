@@ -1,7 +1,5 @@
 var game;
 var abstandX;
-var bgY = 450;
-var bgX = 300;
 var spieler;
 var bodenStueck;
 var cursors;
@@ -13,14 +11,14 @@ var gameOptions = {
     tileSpacing : 0,
     boardSize : {
         maxHeight : 900, // Um die Welt zu definieren
-        maxWidth : 900, // Um die Welt zu definieren
+        maxWidth : 2700, // Um die Welt zu definieren
         //Reihen -> Y-Achse
         height : 36, //Reihen -> Y-Achse
         width : 36 //Spalten -> X-Achse
     },
     mapSize : {
         bgY : 450,
-        bgX : 450 
+        bgX : 1 
     },
     SinglePlayerFrame : {
         playerWidth : 42,
@@ -132,19 +130,21 @@ class playGame extends Phaser.Scene {
                 //child.setBounceY(Phaser.Math.FloatBetween(0, 0));
 
             });
+            //this.items.allowDrag = true;
         
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
-            this.cameras.main.setBounds(0, 0, 420 * 2, 176);
+            this.cameras.main.setBounds(0, 0, 900 * 2, 176);
             cam = this.cameras.main;
             //this.cameras.main.setScrollX(spieler, true, 0.08, 0.08);
             //this.camera.marginBottom.startsWith()
             //this.cameras.main.setZoom(9);
             cursors = this.input.keyboard.createCursorKeys();
-            this.physics.add.collider(items, bodenStueck);
+           
+            // this.physics.add.collider(items, bodenStueck);
             this.physics.add.collider(spieler, bodenStueck);
             this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
-            this.cameras.main.startFollow(spieler);
-            this.physics.add.overlap(spieler, items, collectItemsOne, null, this);
+            this.cameras.main.startFollow(spieler, true);
+            this.physics.add.overlap(spieler, items, this.collectItemsOne, null, this);
         }
     
 
@@ -160,12 +160,16 @@ class playGame extends Phaser.Scene {
             spieler.anims.play("left", true);
         }
         else if(cursors.right.isDown){
-            spieler.setVelocityX(60);
-            cam.x-=0.5;
+            spieler.setVelocityX(10);
+            //hintergrund.setScrollX-=0.5;
+            //cam.x-=0;
+            items.setVelocityX(-10);
+            hintergrund.x -= 0.5;
             spieler.anims.play("right", true);
             
         }
         else{
+            items.setVelocityX(0);
             spieler.setVelocityX(0);
             spieler.anims.play("turn");
         }
@@ -205,6 +209,7 @@ class playGame extends Phaser.Scene {
         }
     }*/
 
+    /*
         baueEinfachePlatformRandom() {
         let positionY_boden = 0;
         let positionX_boden = 0;
@@ -230,7 +235,7 @@ class playGame extends Phaser.Scene {
                 
             }
         }
-    }
+    }*/
     
     collectItemsOne(spieler, red){
         red.disableBody(true, true);
@@ -279,7 +284,7 @@ class playGame1 extends Phaser.Scene {
                     repeat : -1
             });
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
-            this.cameras.main.setBounds(0, 0, 420 * 2, 176);
+            this.cameras.main.setBounds(0, 0, 1350 * 2, 176);
             cam = this.cameras.main;
             //this.cameras.main.setScrollX(spieler, true, 0.08, 0.08);
             //this.camera.marginBottom.startsWith()
