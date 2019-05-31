@@ -121,8 +121,8 @@ class playGame extends Phaser.Scene {
         
             items = this.physics.add.group({
             key: 'red',
-            repeat: 3,
-            setXY: { x: 100, y: 0, stepX: 100 }
+            repeat: 0,
+            setXY: { x: 200, y: 0, stepX: 100 }
             });
         
             items.children.iterate(function (child) {
