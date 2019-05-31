@@ -101,7 +101,7 @@ class playGame extends Phaser.Scene {
         //boden wird erzeugt
         bodenStueck = this.physics.add.staticGroup();
         // Item wird Physik hinzugefügt
-        item = this.physics.add.group({
+        item0 = this.physics.add.group({
             key : 'item',
             repeat : 3,
             setXY : { 
@@ -111,7 +111,7 @@ class playGame extends Phaser.Scene {
                     }
         });
 
-        item2 = this.physics.add.group({
+        item1 = this.physics.add.group({
             key : 'Itemrot',
             repeat : 2,
             setXY : { 
@@ -121,7 +121,7 @@ class playGame extends Phaser.Scene {
                     }
         });
 
-        item3 = this.physics.add.group({
+        item2 = this.physics.add.group({
             key : 'Itemgruen',
             repeat : 3,
             setXY : { 
@@ -139,19 +139,19 @@ class playGame extends Phaser.Scene {
         spieler.setBounce(0.3);
         spieler.setCollideWorldBounds(true);
         // Item als platzierbarer Gegenstand in der Welt
-        item.children.iterate(function (child) {
+        item0.children.iterate(function (child) {
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+            child.setCollideWorldBounds(true);
+            child.setScale(0.5);
+        });
+
+        item1.children.iterate(function (child) {
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
             child.setCollideWorldBounds(true);
             child.setScale(0.5);
         });
 
         item2.children.iterate(function (child) {
-            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-            child.setCollideWorldBounds(true);
-            child.setScale(0.5);
-        });
-
-        item3.children.iterate(function (child) {
             child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
             child.setCollideWorldBounds(true);
             child.setScale(0.5);
@@ -185,7 +185,6 @@ class playGame extends Phaser.Scene {
 
             
 
-            });
             //this.items.allowDrag = true;
         
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
@@ -199,14 +198,14 @@ class playGame extends Phaser.Scene {
             this.physics.add.collider(items, bodenStueck);
             // ?? *************************************** ??
             // Items werden Collisionsabfrage hinzugefügt
-            this.physics.add.collider(item, bodenStueck);
+            this.physics.add.collider(item0, bodenStueck);
+            this.physics.add.collider(item1, bodenStueck);
             this.physics.add.collider(item2, bodenStueck);
-            this.physics.add.collider(item3, bodenStueck);
             this.physics.add.collider(spieler, bodenStueck);
             // Möglichkeit wird hinzugefügt, dass Spieler das Item einsammeln kann 
-            this.physics.add.overlap(spieler, item, this.sammelItem, null, this);
+            this.physics.add.overlap(spieler, item0, this.sammelItem, null, this);
+            this.physics.add.overlap(spieler, item1, this.sammelItem, null, this);
             this.physics.add.overlap(spieler, item2, this.sammelItem, null, this);
-            this.physics.add.overlap(spieler, item3, this.sammelItem, null, this);
             this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
             this.cameras.main.startFollow(spieler);
             
@@ -227,7 +226,7 @@ class playGame extends Phaser.Scene {
         else if(cursors.right.isDown){
             spieler.setVelocityX(10);
             cam.x -= 0.5;
-            item.setVelocityX(-10);
+            item0.setVelocityX(-10);
             spieler.anims.play("right", true);
             
         }
@@ -272,7 +271,6 @@ class playGame extends Phaser.Scene {
         }
     }*/
 
-    /*
         baueEinfachePlatformRandom() {
         var randomNummber;
             
@@ -299,8 +297,8 @@ class playGame extends Phaser.Scene {
     }
 
 
-    sammelItem(spieler, item) {
-        item.disableBody(true, true);
+    sammelItem(spieler, item0) {
+        item0.disableBody(true, true);
     }
     
 }
@@ -405,8 +403,6 @@ class playGame1 extends Phaser.Scene {
     }
 
     baueEinfachePlatformRandom() {
-        let positionY_boden = 0;
-        let positionX_boden = 0;
         var randomNummber;
         for ( let i = 0; i < 300; i += 50) {// i = Anzahl der Steine auf dem Feld. 
             randomNummber = Math.floor((Math.random() * 900) + 1);
