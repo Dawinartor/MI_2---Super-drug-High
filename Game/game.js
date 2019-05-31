@@ -154,11 +154,11 @@ class playGame extends Phaser.Scene {
         if(cursors.up.isDown && (spieler.body.touching.down || spieler.y == 865) ){
             spieler.setVelocityY(-330);
         }
-        if(spieler.x == 879){
+        if(spieler.x == 878  && spieler.y > 400 && spieler.y < 500){
             this.scene.start("PlayGame1");
         }
         else{
-          //  console.log("SpasstPos");
+           console.log("SpasstPos : " + spieler.x + " " + spieler.y);
         }
      }
 
