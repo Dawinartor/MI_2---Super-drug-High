@@ -225,13 +225,18 @@ class playGame extends Phaser.Scene {
         }
         else if(cursors.right.isDown){
             spieler.setVelocityX(10);
-            cam.x -= 0.5;
+            hintergrund.x -= 0.5;
             item0.setVelocityX(-10);
+            item1.setVelocityX(-10);
+            item2.setVelocityX(-10);
             spieler.anims.play("right", true);
             
         }
         else {
          // items.setVelocityX(0);
+            item0.setVelocityX(0);
+            item1.setVelocityX(0);
+            item2.setVelocityX(0);
             spieler.setVelocityX(0);
             spieler.anims.play("turn");
         }
