@@ -2,13 +2,13 @@ var game;
 var item0;
 var item1;
 var item2;
+var item3;
 var abstandX;
 var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
 var cam;
-var items;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -67,9 +67,12 @@ class bootGame extends Phaser.Scene {
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
         this.load.image("Bodenteil", "verwendeteImages/Block.jpg");
         // Items zum einsammeln
-        this.load.image("itemblau", "verwendeteImages/Items/Item-blau.png");
+        this.load.image("Itemblau", "verwendeteImages/Items/Item-blau.png");
         this.load.image("Itemgruen","verwendeteImages/Items/Item-gruen.png");
         this.load.image("Itemrot","verwendeteImages/Items/Item-rot.png");
+        // ------------------- Items zum Testen -----------------------
+        this.load.image("TEST","verwendeteImages/Items/Fliese2.png");
+        // ------------------------------------------------------------
         this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/junky_normal sprite-sheet.png", {
             frameWidth : gameOptions.SinglePlayerFrame.playerWidth, // X-Wert
             frameHeight : gameOptions.SinglePlayerFrame.playerHeight // Y-Wert
@@ -101,10 +104,10 @@ class playGame extends Phaser.Scene {
         bodenStueck = this.physics.add.staticGroup();
         // Item wird Physik hinzugefügt
         item0 = this.physics.add.group({
-            key : 'itemblau',
+            key : 'Itemblau',
             repeat : 3,
             setXY : { 
-                x : 12,
+                x : 55,
                 y : 0,
                 stepX : 90
                     }
@@ -114,7 +117,7 @@ class playGame extends Phaser.Scene {
             key : 'Itemrot',
             repeat : 2,
             setXY : { 
-                x : 12,
+                x : 40,
                 y : 0,
                 stepX : 180
                     }
@@ -124,9 +127,19 @@ class playGame extends Phaser.Scene {
             key : 'Itemgruen',
             repeat : 3,
             setXY : { 
-                x : 12,
+                x : 10,
                 y : 0,
                 stepX : 270
+                    }
+        });
+
+        item3 = this.physics.add.group({
+            key : 'TEST',
+            repeat : 5,
+            setXY : { 
+                x : 80,
+                y : 0,
+                stepX : 400
                     }
         });
 
@@ -155,6 +168,12 @@ class playGame extends Phaser.Scene {
             child.setScale(0.5);
         });
 
+        item3.children.iterate(function (child) {
+            child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+            child.setCollideWorldBounds(true);
+            child.setScale(0.5);
+        });
+
 
 
             this.anims.create({
@@ -174,22 +193,24 @@ class playGame extends Phaser.Scene {
                 frameRate : 10,
                     repeat : -1
             });
-            // Item wird als Objekt definiert
           
           
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
             this.cameras.main.setBounds(0, 0, 900 * 2, 176);
-            cam = this.cameras.main;
             cursors = this.input.keyboard.createCursorKeys();
             // Items werden Collisionsabfrage hinzugefügt
             this.physics.add.collider(item0, bodenStueck);
             this.physics.add.collider(item1, bodenStueck);
             this.physics.add.collider(item2, bodenStueck);
+            this.physics.add.collider(item3, bodenStueck);
             this.physics.add.collider(spieler, bodenStueck);
             // Möglichkeit wird hinzugefügt, dass Spieler das Item einsammeln kann 
-            this.physics.add.overlap(spieler, item0, this.sammelItem, null, this);
-            this.physics.add.overlap(spieler, item1, this.sammelItem, null, this);
-            this.physics.add.overlap(spieler, item2, this.sammelItem, null, this);
+            this.physics.add.overlap(spieler, item0, this.item_blauEffekt, null, this);
+            this.physics.add.overlap(spieler, item1, this.item_blauEffekt, null, this);
+            this.physics.add.overlap(spieler, item2, this.item_blauEffekt, null, this);
+            // ------------------- Weiteres Test Item zu ausprobieren ------------------
+            this.physics.add.overlap(spieler, item3, this.item_testEffekt, null ,this);
+            // -------------------------------------------------------------------------
             this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
             this.cameras.main.startFollow(spieler);
             
@@ -214,6 +235,7 @@ class playGame extends Phaser.Scene {
             item0.setVelocityX(-10);
             item1.setVelocityX(-10);
             item2.setVelocityX(-10);
+            item3.setVelocityX(-10);
             spieler.anims.play("right", true);
         }
 
@@ -230,6 +252,8 @@ class playGame extends Phaser.Scene {
         if(cursors.up.isDown && (spieler.body.touching.down || spieler.y == 865) ){
             spieler.setVelocityY(-330);
         }
+
+        // TODO - Funktioniert das noch so?
         if(spieler.x == 878  && spieler.y > 400 && spieler.y < 500){
             this.scene.start("PlayGame1");
         }
@@ -274,9 +298,13 @@ class playGame extends Phaser.Scene {
     }
 
 
-    sammelItem(spieler, item0) {
+    item_blauEffekt(spieler, item0) {
         item0.disableBody(true, true);
+    }
 
+
+    item_testEffekt(spieler, item3) {
+        item3.disableBody(true, true);
     }
     
 }
