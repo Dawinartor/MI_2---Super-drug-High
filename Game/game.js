@@ -8,7 +8,7 @@ var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
-var cam;
+var testEffekt;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -77,8 +77,6 @@ class bootGame extends Phaser.Scene {
             frameWidth : gameOptions.SinglePlayerFrame.playerWidth, // X-Wert
             frameHeight : gameOptions.SinglePlayerFrame.playerHeight // Y-Wert
         }); 
-        // Sprite-Sheet 
-       // this.load.image("red", "verwendeteImages/Items/Fliese2.png");
     }
 
     create() {
@@ -300,6 +298,7 @@ class playGame extends Phaser.Scene {
 
     item_blauEffekt(spieler, item0) {
         item0.disableBody(true, true);
+        spieler.
     }
 
 
