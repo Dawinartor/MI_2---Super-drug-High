@@ -67,7 +67,7 @@ class bootGame extends Phaser.Scene {
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
         this.load.image("Bodenteil", "verwendeteImages/Block.jpg");
         // Items zum einsammeln
-        this.load.image("itemblau", "verwendeteImages/Items/Fliese2.png");
+        this.load.image("itemblau", "verwendeteImages/Items/Item-blau.png");
         this.load.image("Itemgruen","verwendeteImages/Items/Item-gruen.png");
         this.load.image("Itemrot","verwendeteImages/Items/Item-rot.png");
         this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/junky_normal sprite-sheet.png", {
@@ -75,7 +75,7 @@ class bootGame extends Phaser.Scene {
             frameHeight : gameOptions.SinglePlayerFrame.playerHeight // Y-Wert
         }); 
         // Sprite-Sheet 
-        this.load.image("red", "verwendeteImages/Fliese2.png");
+       // this.load.image("red", "verwendeteImages/Items/Fliese2.png");
     }
 
     create() {
@@ -107,7 +107,7 @@ class playGame extends Phaser.Scene {
             setXY : { 
                 x : 12,
                 y : 0,
-                stepX : 200
+                stepX : 90
                     }
         });
 
@@ -117,7 +117,7 @@ class playGame extends Phaser.Scene {
             setXY : { 
                 x : 12,
                 y : 0,
-                stepX : 200
+                stepX : 180
                     }
         });
 
@@ -127,7 +127,7 @@ class playGame extends Phaser.Scene {
             setXY : { 
                 x : 12,
                 y : 0,
-                stepX : 200
+                stepX : 270
                     }
         });
 
@@ -177,12 +177,13 @@ class playGame extends Phaser.Scene {
                     repeat : -1
             });
             // Item wird als Objekt definiert
+          
             items = this.physics.add.group({
             key: 'red',
             repeat: 0,
             setXY: { x: 200, y: 0, stepX: 100 }
             });
-
+          
             
 
             //this.items.allowDrag = true;
