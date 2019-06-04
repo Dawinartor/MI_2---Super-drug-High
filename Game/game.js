@@ -220,9 +220,10 @@ class playGame extends Phaser.Scene {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
             spieler.setVelocityX(-60);
-            hintergrund.setScrollX+=1.5;
+            hintergrund.setScrollX += 1.5;
             spieler.anims.play("left", true);
         }
+
         else if(cursors.right.isDown){
             spieler.setVelocityX(10);
             hintergrund.x -= 0.5;
@@ -230,8 +231,8 @@ class playGame extends Phaser.Scene {
             item1.setVelocityX(-10);
             item2.setVelocityX(-10);
             spieler.anims.play("right", true);
-            
         }
+        
         else {
          // items.setVelocityX(0);
             item0.setVelocityX(0);
@@ -262,19 +263,6 @@ class playGame extends Phaser.Scene {
         }
     }
 
-    /*
-    bauePlatformRandom_X_Y() {
-       var positionY_boden = 0;
-        var positionX_boden = 0;
-        for (var X = 0; X < 4 ;X++) {
-            for(var Y = 0; Y < 4 ; Y++) {
-                positionY_boden += 75;
-                positionX_boden += 50;
-                bodenStueck.create(positionX_boden, positionY_boden, "Bodenteil")
-            }
-           // console.log(abstandX);
-        }
-    }*/
 
         baueEinfachePlatformRandom() {
         var randomNummber;
