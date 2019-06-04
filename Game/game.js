@@ -67,7 +67,7 @@ class bootGame extends Phaser.Scene {
         this.load.image("HintergrundBild", "verwendeteImages/Background-Town.png");
         this.load.image("Bodenteil", "verwendeteImages/Block.jpg");
         // Items zum einsammeln
-        this.load.image("item", "verwendeteImages/Items/Fliese2.png");
+        this.load.image("itemblau", "verwendeteImages/Items/Fliese2.png");
         this.load.image("Itemgruen","verwendeteImages/Items/Item-gruen.png");
         this.load.image("Itemrot","verwendeteImages/Items/Item-rot.png");
         this.load.spritesheet("SpriteSheetLinkeseite","verwendeteImages/SpriteSheet/junky_normal sprite-sheet.png", {
@@ -102,7 +102,7 @@ class playGame extends Phaser.Scene {
         bodenStueck = this.physics.add.staticGroup();
         // Item wird Physik hinzugefügt
         item0 = this.physics.add.group({
-            key : 'item',
+            key : 'itemblau',
             repeat : 3,
             setXY : { 
                 x : 12,
@@ -232,7 +232,7 @@ class playGame extends Phaser.Scene {
             item2.setVelocityX(-10);
             spieler.anims.play("right", true);
         }
-        
+
         else {
          // items.setVelocityX(0);
             item0.setVelocityX(0);

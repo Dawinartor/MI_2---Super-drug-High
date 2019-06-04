@@ -6,6 +6,7 @@ Tagesziel für 17.05.2019:
 	* Anhand dieser Logik den Spieler statisch bewegen können.
 
 
+
 Tagesziel für 21.05.2019:
 	* Bewegende Figur im Spielfeld
 	
@@ -13,6 +14,8 @@ Tagesziel für 21.05.2019:
 	* Keymapping -> Das Eingeben der Tasten soll ein Objekt erstellen
 				    das erzeugte Objekt soll den Spieler auf dem Spielfeld manipulieren.
 				 
+
+
 Tagesziel für 23.05.2019:
 	* Springen auf dem leeren Boden 
 	* Platformen zum stehen, Weltelemente bauen.
@@ -21,17 +24,33 @@ Tagesziel für 23.05.2019:
 	* Code aufräumen, nur noch das was wirklich benötigt wird.
 
 
+
 Tagesziel für 24.05.2019:
 	* Kamera Fokus auf Spieler gesetzt
 	
 - Unterziele für das Tagesziel:
 	* Random Block-generator grund baustein
 
+
+
 Tagesziel für 25.05.2019:
 	* Optimiere PlatformErzeugenMethode
+
+
 
 Tagesziel für 31.05.2019:
 	* Items programmieren
 
 - Unterziele für das Tagesziel:
 	* Hot-Area ins Level packen
+
+
+
+Tagesziel für 04.ß6.2019:
+	* Items Funktionen geben
+		+ Item-Blau: langsamer laufen
+		+ Item-Grün: Höher Springen
+		+ Item-Rot: Was auch immer
+	
+- Unterziele für das Tagesziel:
+	* Spritesheets für die Figur & Items anpassen
