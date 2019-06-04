@@ -8,7 +8,7 @@ var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
-var testEffekt;
+var testEffekt = 10;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -222,13 +222,13 @@ class playGame extends Phaser.Scene {
     update() {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
-            spieler.setVelocityX(-60);
+            spieler.setVelocityX(testEffekt);
             hintergrund.setScrollX += 1.5;
             spieler.anims.play("left", true);
         }
 
         else if(cursors.right.isDown){
-            spieler.setVelocityX(10);
+            spieler.setVelocityX(testEffekt);
             hintergrund.x -= 0.5;
             item0.setVelocityX(-10);
             item1.setVelocityX(-10);
@@ -238,11 +238,11 @@ class playGame extends Phaser.Scene {
         }
 
         else {
-         // items.setVelocityX(0);
+            spieler.setVelocityX(0);
             item0.setVelocityX(0);
             item1.setVelocityX(0);
             item2.setVelocityX(0);
-            spieler.setVelocityX(0);
+            item3.setVelocityX(0);
             spieler.anims.play("turn");
         }
         //console.log(spieler.y);
@@ -259,6 +259,8 @@ class playGame extends Phaser.Scene {
            // console.log("SpasstPos : " + spieler.x + " " + spieler.y);
         }
      }
+
+// ------------------------------------------ Platformen bauen ------------------------------------------
 
      bauePlatformX25() {
         abstandX = 0;
@@ -295,14 +297,17 @@ class playGame extends Phaser.Scene {
         }
     }
 
+// ------------------------------------------ Platformen bauen ------------------------------------------
 
     item_blauEffekt(spieler, item0) {
         item0.disableBody(true, true);
-        spieler.
+        testEffekt = 50;
     }
 
 
     item_testEffekt(spieler, item3) {
+        testEffekt = 0;
+        
         item3.disableBody(true, true);
     }
     
