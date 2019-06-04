@@ -354,12 +354,8 @@ class playGame1 extends Phaser.Scene {
             });
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
             this.cameras.main.setBounds(0, 0, 1350 * 2, 176);
-            cam = this.cameras.main;
-            //this.cameras.main.setScrollX(spieler, true, 0.08, 0.08);
-            //this.camera.marginBottom.startsWith()
-            //this.cameras.main.setZoom(9);
-            cursors = this.input.keyboard.createCursorKeys();
             this.physics.add.collider(spieler, bodenStueck);
+            cursors = this.input.keyboard.createCursorKeys();
         }
 
 /* Unterschied zwischen unvisible und transparent: 
