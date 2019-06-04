@@ -178,11 +178,11 @@ class playGame extends Phaser.Scene {
             });
             // Item wird als Objekt definiert
           
-            items = this.physics.add.group({
+            /*items = this.physics.add.group({
             key: 'red',
             repeat: 0,
             setXY: { x: 200, y: 0, stepX: 100 }
-            });
+            });*/
           
             
 
@@ -196,7 +196,7 @@ class playGame extends Phaser.Scene {
             //this.cameras.main.setZoom(9);
             cursors = this.input.keyboard.createCursorKeys();
             // ?? *************************************** ??
-            this.physics.add.collider(items, bodenStueck);
+            //this.physics.add.collider(items, bodenStueck);
             // ?? *************************************** ??
             // Items werden Collisionsabfrage hinzugefügt
             this.physics.add.collider(item0, bodenStueck);
