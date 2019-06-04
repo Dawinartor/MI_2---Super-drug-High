@@ -94,7 +94,6 @@ class playGame extends Phaser.Scene {
         super("PlayGame");
     }
 
-
     create() {
         //hintergrund wird erzeugt
         hintergrund = this.add.image(gameOptions.mapSize.bgX , gameOptions.mapSize.bgY, "HintergrundBild");
@@ -133,7 +132,6 @@ class playGame extends Phaser.Scene {
 
 
 
-      
         // Spieler Position & Physik wird definiert : 
         spieler = this.physics.add.sprite(25, 850, "SpriteSheetLinkeseite", 0);
         spieler.setBounce(0.3);
@@ -178,26 +176,11 @@ class playGame extends Phaser.Scene {
             });
             // Item wird als Objekt definiert
           
-            /*items = this.physics.add.group({
-            key: 'red',
-            repeat: 0,
-            setXY: { x: 200, y: 0, stepX: 100 }
-            });*/
           
-            
-
-            //this.items.allowDrag = true;
-        
             this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
             this.cameras.main.setBounds(0, 0, 900 * 2, 176);
             cam = this.cameras.main;
-            //this.cameras.main.setScrollX(spieler, true, 0.08, 0.08);
-            //this.camera.marginBottom.startsWith()
-            //this.cameras.main.setZoom(9);
             cursors = this.input.keyboard.createCursorKeys();
-            // ?? *************************************** ??
-            //this.physics.add.collider(items, bodenStueck);
-            // ?? *************************************** ??
             // Items werden Collisionsabfrage hinzugefügt
             this.physics.add.collider(item0, bodenStueck);
             this.physics.add.collider(item1, bodenStueck);
@@ -293,6 +276,7 @@ class playGame extends Phaser.Scene {
 
     sammelItem(spieler, item0) {
         item0.disableBody(true, true);
+
     }
     
 }
