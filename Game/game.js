@@ -8,7 +8,7 @@ var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
-var testEffekt = 10;
+var velocitySpieler = 10;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -103,9 +103,9 @@ class playGame extends Phaser.Scene {
         // Item wird Physik hinzugefügt
         item0 = this.physics.add.group({
             key : 'Itemblau',
-            repeat : 3,
+            repeat : 0,
             setXY : { 
-                x : 55,
+                x : 270,
                 y : 0,
                 stepX : 90
                     }
@@ -113,9 +113,9 @@ class playGame extends Phaser.Scene {
 
         item1 = this.physics.add.group({
             key : 'Itemrot',
-            repeat : 2,
+            repeat : 0,
             setXY : { 
-                x : 40,
+                x : 550,
                 y : 0,
                 stepX : 180
                     }
@@ -123,9 +123,9 @@ class playGame extends Phaser.Scene {
 
         item2 = this.physics.add.group({
             key : 'Itemgruen',
-            repeat : 3,
+            repeat : 0,
             setXY : { 
-                x : 10,
+                x : 700,
                 y : 0,
                 stepX : 270
                     }
@@ -133,9 +133,9 @@ class playGame extends Phaser.Scene {
 
         item3 = this.physics.add.group({
             key : 'TEST',
-            repeat : 5,
+            repeat : 0,
             setXY : { 
-                x : 80,
+                x : 870,
                 y : 0,
                 stepX : 400
                     }
@@ -204,8 +204,8 @@ class playGame extends Phaser.Scene {
             this.physics.add.collider(spieler, bodenStueck);
             // Möglichkeit wird hinzugefügt, dass Spieler das Item einsammeln kann 
             this.physics.add.overlap(spieler, item0, this.item_blauEffekt, null, this);
-            this.physics.add.overlap(spieler, item1, this.item_blauEffekt, null, this);
-            this.physics.add.overlap(spieler, item2, this.item_blauEffekt, null, this);
+            this.physics.add.overlap(spieler, item1, this.item_rotEffekt, null, this);
+            this.physics.add.overlap(spieler, item2, this.item_gruenEffekt, null, this);
             // ------------------- Weiteres Test Item zu ausprobieren ------------------
             this.physics.add.overlap(spieler, item3, this.item_testEffekt, null ,this);
             // -------------------------------------------------------------------------
@@ -222,13 +222,13 @@ class playGame extends Phaser.Scene {
     update() {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
-            spieler.setVelocityX(testEffekt);
+            spieler.setVelocityX(velocitySpieler);
             hintergrund.setScrollX += 1.5;
             spieler.anims.play("left", true);
         }
 
         else if(cursors.right.isDown){
-            spieler.setVelocityX(testEffekt);
+            spieler.setVelocityX(velocitySpieler);
             hintergrund.x -= 0.5;
             item0.setVelocityX(-10);
             item1.setVelocityX(-10);
@@ -251,12 +251,15 @@ class playGame extends Phaser.Scene {
             spieler.setVelocityY(-330);
         }
 
+
+
+
         // TODO - Funktioniert das noch so?
         if(spieler.x == 878  && spieler.y > 400 && spieler.y < 500){
             this.scene.start("PlayGame1");
         }
         else{
-           // console.log("SpasstPos : " + spieler.x + " " + spieler.y);
+            console.log(item0.x);
         }
      }
 
@@ -301,14 +304,22 @@ class playGame extends Phaser.Scene {
 
     item_blauEffekt(spieler, item0) {
         item0.disableBody(true, true);
-        testEffekt = 50;
+        velocitySpieler = 120;
     }
 
+    item_rotEffekt(spieler, item1) {
+        item1.disableBody(true, true);
+        velocitySpieler = 199;
+    }
+
+    item_gruenEffekt(spieler, item2) {
+        item2.disableBody(true, true);
+        velocitySpieler = 300;
+    }
 
     item_testEffekt(spieler, item3) {
-        testEffekt = 0;
-        
         item3.disableBody(true, true);
+        velocitySpieler = 0;
     }
     
 }
