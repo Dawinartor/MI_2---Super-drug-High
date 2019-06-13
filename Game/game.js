@@ -135,7 +135,7 @@ class playGame extends Phaser.Scene {
             key : 'TEST',
             repeat : 0,
             setXY : { 
-                x : 870,
+                x : 900,
                 y : 0,
                 stepX : 400
                     }
@@ -193,8 +193,8 @@ class playGame extends Phaser.Scene {
             });
           
           
-            this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
-            this.cameras.main.setBounds(0, 0, 900 * 2, 176);
+            //this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
+            //this.cameras.main.setBounds(0, 0, 2700, 176);
             cursors = this.input.keyboard.createCursorKeys();
             // Items werden Collisionsabfrage hinzugefügt
             this.physics.add.collider(item0, bodenStueck);
@@ -210,7 +210,7 @@ class playGame extends Phaser.Scene {
             this.physics.add.overlap(spieler, item3, this.item_testEffekt, null ,this);
             // -------------------------------------------------------------------------
             this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
-            this.cameras.main.startFollow(spieler);
+            //this.cameras.main.startFollow(spieler);
             
         }
     
@@ -238,7 +238,7 @@ class playGame extends Phaser.Scene {
 
         else if(cursors.right.isDown){
             spieler.setVelocityX(effektVariable);
-            hintergrund.x -= 0.5;
+            hintergrund.x -= 2.5;
             item0.setVelocityX(-10);
             item1.setVelocityX(-10);
             item2.setVelocityX(-10);
@@ -264,9 +264,9 @@ class playGame extends Phaser.Scene {
 
 
         // TODO - Funktioniert das noch so?
-        if(spieler.x == 878  && spieler.y > 400 && spieler.y < 500){
+        /*if(spieler.x == 878  && spieler.y > 400 && spieler.y < 500){
             this.scene.start("PlayGame1");
-        }
+        }*/
         else{
             console.log("SpielerPos : " + spieler.x);
             console.log("Hintergrund Position : " + hintergrund.x);
@@ -329,7 +329,7 @@ class playGame extends Phaser.Scene {
 
     item_testEffekt(spieler, item3) {
         item3.disableBody(true, true);
-        effektVariable = 0;
+        effektVariable = 200;
     }
     
 }
