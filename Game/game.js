@@ -8,7 +8,7 @@ var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
-var effektVariable = 10;
+var effektVariable = 100;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -21,7 +21,7 @@ var gameOptions = {
     },
     mapSize : {
         bgY : 450,
-        bgX : 1 
+        bgX : 1350 
     },
     SinglePlayerFrame : {
         playerWidth : 42,
@@ -222,8 +222,17 @@ class playGame extends Phaser.Scene {
     update() {
         // Wie siehts aus mit Switch-Case statt if-Bedingungen?
         if(cursors.left.isDown){
-            spieler.setVelocityX(effektVariable);
-            hintergrund.setScrollX += 1.5;
+            spieler.setVelocityX(-effektVariable);
+            //spieler.setVelocityX(effektVariable);
+            if(hintergrund.x <= 1350){
+                hintergrund.x += 2.5;
+            }
+            //hintergrund.x += 0.5;
+            item0.setVelocityX(+10);
+            item1.setVelocityX(+10);
+            item2.setVelocityX(+10);
+            item3.setVelocityX(+10);
+            //hintergrund.setScrollX = 1.5;
             spieler.anims.play("left", true);
         }
 
@@ -259,7 +268,8 @@ class playGame extends Phaser.Scene {
             this.scene.start("PlayGame1");
         }
         else{
-            console.log(item0.x);
+            console.log("SpielerPos : " + spieler.x);
+            console.log("Hintergrund Position : " + hintergrund.x);
         }
      }
 
