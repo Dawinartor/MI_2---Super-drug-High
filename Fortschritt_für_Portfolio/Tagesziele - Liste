@@ -66,3 +66,12 @@ Tagesziel für 17.06.2019:
 - Unterziele für das Tagesziel:
 	* Items einfügen.
 	* Items Fähigkeit geben.
+
+- Quellen zum fertigstellen:
+	* https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
+
+	* https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3
+
+	* https://photonstorm.github.io/phaser3-docs/Phaser.Loader.FileTypes.SpriteSheetFile.html
+	
+
