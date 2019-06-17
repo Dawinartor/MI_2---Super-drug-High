@@ -18,7 +18,7 @@ var config = {
 // erstellt das Spiel und übergibt dem die Einstellungen:
 var spiel = new Phaser.Game(config);
 
-var map01, map02, map03;
+var map01, map02, map03, map04;
 var tiles;
 var player;
 var cursors;
@@ -52,13 +52,19 @@ gameScene.init = function() {
 // Wir laden nun unsere Assets aus dem Ordner
 gameScene.preload = function() {
   
-    // Erzeuge eine TileMap durch die, zuvor angelegte tilemapTiledJSON:
-    this.load.tilemapTiledJSON('map01', 'Assets/Test02/SpielKarte.json');
+    // Erzeuge eine TileMap durch die, zuvor angelegte tilemapTiledJSON
 
-    // Erzeuge neue TileMap:
-    this.load.tilemapTiledJSON('map02', 'Assets/Worlds/SkyLine.json');
+    // Erzeuge neue TileMap für :
+    this.load.tilemapTiledJSON('', 'Assets/Worlds/');
 
-    // Erzeuge
+    // Erzeuge neue TileMap für :
+    this.load.tilemapTiledJSON('', 'Assets/Worlds/SkyLine.json');
+
+    // Erzeuge neue TileMap für :
+    this.load.tilemapTiledJSON('', '')
+
+    // Erzeuge neue TileMap für :
+    this.load.tilemapTiledJSON('', '')
 
     // Übergebe Tiles an Variable tiles:
     this.load.spritesheet('MarioTiles22', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
