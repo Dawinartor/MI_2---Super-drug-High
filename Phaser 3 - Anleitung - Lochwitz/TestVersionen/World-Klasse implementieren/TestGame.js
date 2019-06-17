@@ -3,17 +3,18 @@ var gameScene = new Phaser.Scene('LevelOne');
 // Scenen eigene Spiele Konfiguration:
 var config = {
     type : Phaser.AUTO, // entscheidet selbst ob WebGL | Canvas verwendet werden soll.
-    width : 2720, //window.innerWidth,
-    height : 928, // window.innerHeight,
+    width : 2720,
+    height : 928,
     scene : gameScene, // Checkmal ab ob du hier eine Änderung machst, zweite Gamescene
     physics : {
         default : 'arcade',
         arcade : {
-            gravity : { y : 500 },
+            gravity : { y : 300 },
             debug : false
         }
     }
 };
+
 // erstellt das Spiel und übergibt dem die Einstellungen:
 var spiel = new Phaser.Game(config);
 
@@ -73,13 +74,13 @@ gameScene.create = function() {
 
    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-     backgroundLayer = map.createStaticLayer('Hintergrund', tiles, 0, 0);
+    backgroundLayer = map.createStaticLayer('Hintergrund', tiles, 0, 0);
    // Danach die Plattformen:
     groundLayer = map.createStaticLayer('Plattform', tiles, 0, 0);
    // Andere Tiles wie Collectables:
     collectables = map.createStaticLayer('Items', tiles, 0, 0 );
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
-   groundLayer.setCollisionByExclusion( [-1] );
+    groundLayer.setCollisionByExclusion( [-1] );
 
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann

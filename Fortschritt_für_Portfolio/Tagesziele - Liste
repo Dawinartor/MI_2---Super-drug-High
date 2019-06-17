@@ -46,7 +46,7 @@ Tagesziel für 31.05.2019:
 
 
 
-Tagesziel für 04.ß6.2019:
+Tagesziel für 04.06.2019:
 	* Items Funktionen geben
 		+ Item-Blau: langsamer laufen
 		+ Item-Grün: Höher Springen
@@ -54,3 +54,24 @@ Tagesziel für 04.ß6.2019:
 	
 - Unterziele für das Tagesziel:
 	* Spritesheets für die Figur & Items anpassen
+
+
+
+Tagesziel für 17.06.2019:
+	* Das Spiel an die JSON-Änderungen anpassen.
+		+ Level 1 fertigstellen
+		+ Level 2 fertigstellen
+		+ Level 3 fertigstellen
+
+- Unterziele für das Tagesziel:
+	* Items einfügen.
+	* Items Fähigkeit geben.
+
+- Quellen zum fertigstellen:
+	* https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
+
+	* https://gamedevacademy.org/how-to-make-a-mario-style-platformer-with-phaser-3
+
+	* https://photonstorm.github.io/phaser3-docs/Phaser.Loader.FileTypes.SpriteSheetFile.html
+	
+
