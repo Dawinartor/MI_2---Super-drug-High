@@ -124,8 +124,19 @@ gameScene.create = function() {
         repeat : -1
     } );
 */
+
+
    // Gib an, dass der SPieler mit dem Grund Kollidieren kann:
    this.physics.add.collider(groundLayer, player);
+
+
+    // Kamera Einstellungen
+    this.cameras.main.setBounds(0, 0, 200, 200);
+
+    this.cameras.main.startFollow(player);
+
+    this.cameras.main.setBackgroundColor('#FF00FF');
+
 
     // Die im initial() angelegte Variable, wird nun zugewiesen:
     courserKey = this.input.keyboard.createCursorKeys();
