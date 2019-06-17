@@ -168,6 +168,10 @@ gameScene.update = function () {
        player.anims.play('stay', true);
        // console.log("Sprung");
    }
+    else{
+        player.body.setVelocityX(0);
+        player.anims.play('stay', true);
+    }
 
 }
   
