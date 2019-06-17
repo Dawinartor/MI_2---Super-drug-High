@@ -1,0 +1,14 @@
+{ "columns":19,
+ "image":"..\/Items\/Super_Mario_TileSet.png",
+ "imageheight":192,
+ "imagewidth":304,
+ "margin":0,
+ "name":"TestMapLevelEins",
+ "spacing":0,
+ "tilecount":228,
+ "tiledversion":"1.2.4",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.2
+}
