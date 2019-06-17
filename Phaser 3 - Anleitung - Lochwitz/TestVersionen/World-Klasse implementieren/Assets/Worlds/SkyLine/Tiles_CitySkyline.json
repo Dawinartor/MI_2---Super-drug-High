@@ -1,0 +1,14 @@
+{ "columns":168,
+ "image":"..\/Documents\/Bunt\/Programmiersprachen\/GitHub_Projekte\/MI_2---Super-drug-High\/Assets\/Sprites\/Background panorama.jpg",
+ "imageheight":900,
+ "imagewidth":2700,
+ "margin":0,
+ "name":"Tiles_CitySkyline",
+ "spacing":0,
+ "tilecount":9408,
+ "tiledversion":"1.2.4",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.2
+}

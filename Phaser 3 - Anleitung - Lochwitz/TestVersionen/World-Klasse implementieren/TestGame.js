@@ -58,6 +58,8 @@ gameScene.preload = function() {
     // Übergebe Tiles an Variable tiles:
     this.load.spritesheet('MarioTiles22', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
 
+    // Übergebe Tiles an 
+
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
 
