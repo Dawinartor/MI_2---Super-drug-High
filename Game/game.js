@@ -8,7 +8,7 @@ var spieler;
 var bodenStueck;
 var cursors;
 var hintergrund;
-var effektVariable = 100;
+var effektVariable = 200;
 var gameOptions = {
     tileSize : 25,
     tileSpacing : 0,
@@ -35,8 +35,8 @@ var gameOptions = {
 
 window.onload = function() {
     var gameConfig = {
-        width: gameOptions.boardSize.width * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
-        height: gameOptions.boardSize.height * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
+        width: /*2700*/gameOptions.boardSize.width * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
+        height: /*900*/gameOptions.boardSize.height * (gameOptions.tileSize + gameOptions.tileSpacing) + gameOptions.tileSpacing,
         backgroundColor: 0xff0000,
         scene: [ bootGame, playGame, playGame1 ],
         physics : {
@@ -193,8 +193,8 @@ class playGame extends Phaser.Scene {
             });
           
           
-            //this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
-            //this.cameras.main.setBounds(0, 0, 2700, 176);
+            this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
+            this.cameras.main.setBounds(0, 0, 2700, 176);
             cursors = this.input.keyboard.createCursorKeys();
             // Items werden Collisionsabfrage hinzugefügt
             this.physics.add.collider(item0, bodenStueck);
@@ -209,7 +209,7 @@ class playGame extends Phaser.Scene {
             // ------------------- Weiteres Test Item zu ausprobieren ------------------
             this.physics.add.overlap(spieler, item3, this.item_testEffekt, null ,this);
             // -------------------------------------------------------------------------
-            this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
+            //this.cameras.main.setBounds(0, 0, gameOptions.mapSize.bgX, gameOptions.mapSize.bgY);
             //this.cameras.main.startFollow(spieler);
             
         }
