@@ -55,16 +55,16 @@ gameScene.preload = function() {
     // Erzeuge eine TileMap durch die, zuvor angelegte tilemapTiledJSON
 
     // Erzeuge neue TileMap für :
-    this.load.tilemapTiledJSON('', 'Assets/Worlds/');
+   // this.load.tilemapTiledJSON('', 'Assets/Worlds/');
 
     // Erzeuge neue TileMap für :
-    this.load.tilemapTiledJSON('', 'Assets/Worlds/SkyLine.json');
+    this.load.tilemapTiledJSON('SkyLine', 'Assets/Worlds/SkyLineJSON.json');
 
     // Erzeuge neue TileMap für :
-    this.load.tilemapTiledJSON('', '')
+   // this.load.tilemapTiledJSON('', '')
 
     // Erzeuge neue TileMap für :
-    this.load.tilemapTiledJSON('', '')
+  //  this.load.tilemapTiledJSON('', '')
 
     // Übergebe Tiles an Variable tiles:
     this.load.spritesheet('MarioTiles22', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
