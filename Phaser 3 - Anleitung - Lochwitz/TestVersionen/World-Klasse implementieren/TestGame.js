@@ -60,7 +60,6 @@ gameScene.preload = function() {
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
 
-
 };
 
 
@@ -117,7 +116,7 @@ gameScene.create = function() {
     });
 
 
-/*
+/* // Bessere Alternative???
     this.anims.create( {
         key : 'walk',
         frames : this.anims.generateFrameNames( 'player', { prefix : 'walkLeft', start : 0, ende : 1, zeroPad : 2 } ),
@@ -128,11 +127,9 @@ gameScene.create = function() {
    // Gib an, dass der SPieler mit dem Grund Kollidieren kann:
    this.physics.add.collider(groundLayer, player);
 
-
     // Die im initial() angelegte Variable, wird nun zugewiesen:
     courserKey = this.input.keyboard.createCursorKeys();
     // -> ** courserKey muss in initial() zuvor angelegt werden! **
-
 
 }
 
@@ -161,7 +158,7 @@ gameScene.update = function () {
        // console.log("Sprung");
    }
 
-   }
+}
   
 
 
