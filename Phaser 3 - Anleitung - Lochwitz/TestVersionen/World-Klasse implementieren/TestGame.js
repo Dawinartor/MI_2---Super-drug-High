@@ -18,7 +18,7 @@ var config = {
 // erstellt das Spiel und übergibt dem die Einstellungen:
 var spiel = new Phaser.Game(config);
 
-var map;
+var map01, map02, map03;
 var tiles;
 var player;
 var cursors;
@@ -53,9 +53,12 @@ gameScene.init = function() {
 gameScene.preload = function() {
   
     // Erzeuge eine TileMap durch die, zuvor angelegte tilemapTiledJSON:
-    this.load.tilemapTiledJSON('map', 'Assets/Test02/SpielKarte.json');
+    this.load.tilemapTiledJSON('map01', 'Assets/Test02/SpielKarte.json');
 
-    // Erzeuge neue TileMap durch die, zuvor
+    // Erzeuge neue TileMap:
+    this.load.tilemapTiledJSON('map02', 'Assets/Worlds/SkyLine.json');
+
+    // Erzeuge
 
     // Übergebe Tiles an Variable tiles:
     this.load.spritesheet('MarioTiles22', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
@@ -71,17 +74,17 @@ gameScene.preload = function() {
 gameScene.create = function() {
 
    // Das ist die Map, die wie erzeugt haben:
-   map = this.make.tilemap( { key : 'map'} );
+   map01 = this.make.tilemap( { key : 'map'} );
 
-   tiles = map.addTilesetImage('MarioTiles' ,'MarioTiles22');
+   tiles = map01.addTilesetImage('MarioTiles' ,'MarioTiles22');
 
    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map.createStaticLayer('Hintergrund', tiles, 0, 0);
+    backgroundLayer = map01.createStaticLayer('Hintergrund', tiles, 0, 0);
    // Danach die Plattformen:
-    groundLayer = map.createStaticLayer('Plattform', tiles, 0, 0);
+    groundLayer = map01.createStaticLayer('Plattform', tiles, 0, 0);
    // Andere Tiles wie Collectables:
-    collectables = map.createStaticLayer('Items', tiles, 0, 0 );
+    collectables = map01.createStaticLayer('Items', tiles, 0, 0 );
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
 
