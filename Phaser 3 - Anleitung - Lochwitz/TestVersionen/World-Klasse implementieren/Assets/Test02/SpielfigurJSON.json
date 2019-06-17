@@ -1,0 +1,14 @@
+{ "columns":5,
+ "image":"..\/Player\/Sprite_sheet_normal.png",
+ "imageheight":76,
+ "imagewidth":125,
+ "margin":0,
+ "name":"Spielfigur",
+ "spacing":0,
+ "tilecount":5,
+ "tiledversion":"1.2.4",
+ "tileheight":76,
+ "tilewidth":25,
+ "type":"tileset",
+ "version":1.2
+}
