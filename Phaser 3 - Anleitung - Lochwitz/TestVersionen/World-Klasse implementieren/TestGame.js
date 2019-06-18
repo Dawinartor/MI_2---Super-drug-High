@@ -226,7 +226,8 @@ gameScene.create = function() {
     // Mache Musik loop draus:
     // music.setLoop(true);
     // Musik wird abgespielt:
-    music[1].play();
+    //music[1].play();
+
 }
 
 
@@ -235,7 +236,13 @@ gameScene.create = function() {
 gameScene.update = function () {
 
 // In der Update-Abfrage nach Position des Spieler Fragen -> Je nach Level wir ander Musik gespielt.
-console.log(player.x);
+    if ( player.x >= 2650 || (player.x > 2650 && player.y > 800 ) ) {
+        music[1].play();
+        
+    } else {
+        music[2].play();
+    }
+
 
 
     //Wir prüfen auf Aktivität:
@@ -243,23 +250,30 @@ console.log(player.x);
 
        player.body.setVelocityX(-80);
        player.anims.play('left', true);
-        console.log("links");
+    
    } else if ( courserKey.right.isDown ) { // Laufe nach rechts
 
        player.body.setVelocityX(80);
        player.anims.play('right', true);
-        console.log("rechts");
+    
    } else if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
         // Springe bei Leertaste | Pfeil nach oben
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
-        console.log("Sprung");
+
    }
-    else{
+    else {
         player.body.setVelocityX(0);
         player.anims.play('stay', true);
     }
 
+}
+
+// Zum Testen:
+setInterval(getPlayerPos, 2000);
+
+function getPlayerPos() {
+    console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );
 }
   
 
