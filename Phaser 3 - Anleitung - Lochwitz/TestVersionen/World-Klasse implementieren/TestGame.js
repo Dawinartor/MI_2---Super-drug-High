@@ -19,7 +19,7 @@ var config = {
 var spiel = new Phaser.Game(config);
 // map01 = Skyline, map02 = 
 var map01, map02, map03, map04;
-var tiles;
+var tilesMario;
 var player;
 var cursors;
 var groundLayer, backgroundLayer;
@@ -28,7 +28,7 @@ var itemLayerOne, itemLayerTwo, itemLayerThree;
 // Später noch Score einbauen??
 var text;
 // Test ----
-var tilesTest;
+var tilesMario, tilesForrest, tilesCity_David, tilesCityTown;
 
 /* Scene life-Cycle: 
     1. inti(): Wird eine Scene gestartetn dann wird init() aufgerufen.
@@ -56,28 +56,24 @@ gameScene.init = function() {
 // Wir laden nun unsere Assets aus dem Ordner
 gameScene.preload = function() {
   
-    // Lade eine TileMap durch die, zuvor angelegte tilemapTiledJSON
+    // Lade eine TileMap durch die, zuvor angelegte tilemapTiledJSON. 
+    // Diese läd dann auch die PNG-Datei aus dem angegebenen Verzeichnis.
 
-    //Test zweck, lade Map:
-    this.load.tilemapTiledJSON('map', 'Assets/Worlds/Test_World/Map_Mario.json')
+    // Lade neue TileMap für Skyline Map:
+    this.load.tilemapTiledJSON('Skyline', 'Assets/Worlds/SkyLine/World_Skyline.json');
+    // Lade neue TileMap für Forrest Map:
+    this.load.tilemapTiledJSON('Forrest', 'Assets/Worlds/Forrest/World_Forrest.json');
+    // Lade neue TileMap für City_David Map:
+    // this.load.tilemapTiledJSON('', '')
+    // Lade neue TileMap für CityTown Map:
+    // this.load.tilemapTiledJSON('', '')
 
-    this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
-
-    // Lade neue TileMap für :
-   //this.load.tilemapTiledJSON('', 'Assets/Worlds/');
-
-    // Lade neue TileMap für Skyline Map :
-    // Aus der JSON-Datei wird auch die PNG-Datei rausgeladen.
-    //this.load.tilemapTiledJSON('map', 'Assets/Worlds/SkyLine/World_Skyline.json');
-
-    // Lade neue TileMap für :
-   // this.load.tilemapTiledJSON('', '')
-
-    // Lade neue TileMap für :
-  //  this.load.tilemapTiledJSON('', '')
 
     // Lade Tiles des Supermario Sprite_sheets:
-    // this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
+    this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
+    // Lade Tiles aus Forrest_panorama JPG-Datei:
+    this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
+
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
@@ -88,26 +84,35 @@ gameScene.preload = function() {
 // Wird einmal gerufen um geladenes zu laden
 gameScene.create = function() {
 
-   // Das ist die Map, die wie erzeugt haben:
-   map01 = this.make.tilemap( { key : 'map'} );
+   // Erzeuge einzelnde Maps:
+    map01 = this.make.tilemap( { key : 'Skyline' } );
+
+    map02 = this.make.tilemap( { key : 'Forrest' } );
+
+   // map03 = this.make.tilemap( { key : 'map' } );
+
+  //  map04 = this.make.tilemap( { key : 'map' } );
 
     // <Name in Tiled>, <Name aus spritesheet>
    //tiles = map01.addTilesetImage('Supermario_Tileset' ,'SuperMario_Tiles');
 
-   // Testzweck:
-   tilesTest = map01.addTilesetImage('Test_Mario', 'SuperMario_Tiles');
+   // Übergebe Tileset einer Map, an tiles-Variable:
+    tilesMario = map01.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
+
+    // Übergebe Tileset einer Map, an tiles-Variable:
+    tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles'); // Muss ein zweites TileSet hinzugefügt werden?
+
+// -------------- Layer-Konfiguration für map01 ---------------
 
    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Background', tilesTest, 0, 0);
-
+    backgroundLayer = map01.createStaticLayer('Background', tilesMario, 0, 0);
    // Danach die Plattformen:
-    groundLayer = map01.createStaticLayer('Ground', tilesTest, 0, 0);
-
+    groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
    // Andere Tiles wie Collectables:
-  //  itemLayerOne = map01.createStaticLayer('Collectable_Grey', tiles, 0, 0 );
-   // itemLayerTwo = map01.createStaticLayer('Collectable_Red', tiles, 0, 0);
-    // itemLayerThree = map01.createStaticLayer('Collectable_Green', tiles, 0, 0);
+    itemLayerOne = map01.createStaticLayer('Collectable_Grey', tilesMario, 0, 0 );
+    itemLayerTwo = map01.createStaticLayer('Collectable_Green', tilesMario, 0, 0);
+    itemLayerThree = map01.createStaticLayer('Collectable_Red', tilesMario, 0, 0);
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
@@ -116,6 +121,28 @@ gameScene.create = function() {
    this.physics.world.bounds.width = groundLayer.width;
    this.physics.world.bounds.height = groundLayer.height;
 
+   // -------------- Layer-Konfiguration für map01 ---------------
+/****  Die map01 wird gerade von der, darunter stehenden Map02, überschrieben. Deswegen sieht mann nur map02 in HTML ****/
+   // -------------- Layer-Konfiguration für map02 ---------------
+
+    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
+   // Erst der Hintergrund:
+   backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
+   // Danach die Plattformen:
+    groundLayer = map02.createStaticLayer('Ground', tilesForrest, 0, 0);
+   // Andere Tiles wie Collectables:
+    itemLayerOne = map02.createStaticLayer('Collectable_Grey', tilesForrest, 0, 0 );
+    itemLayerTwo = map02.createStaticLayer('Collectable_Green', tilesForrest, 0, 0);
+    itemLayerThree = map02.createStaticLayer('Collectable_Red', tilesForrest, 0, 0);
+
+    // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
+    groundLayer.setCollisionByExclusion( [-1] );
+
+   // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
+   this.physics.world.bounds.width = groundLayer.width;
+   this.physics.world.bounds.height = groundLayer.height;
+
+    // -------------- Layer-Konfiguration für map02 ---------------
 
    // Erzeuge Spieler für unser Spiel:
    // player = 
@@ -161,11 +188,11 @@ gameScene.create = function() {
 
 
     // Kamera Einstellungen
-   // this.cameras.main.setBounds(0, 0, 200, 200);
+   //this.cameras.main.setBounds(0, 0, 200, 200);
 
-   // this.cameras.main.startFollow(player);
+   //this.cameras.main.startFollow(player);
 
-   // this.cameras.main.setBackgroundColor('#FF00FF');
+   //this.cameras.main.setBackgroundColor('#FF00FF');
 
 
     // Die im initial() angelegte Variable, wird nun zugewiesen:
