@@ -17,12 +17,14 @@ var config = {
 
 // erstellt das Spiel und übergibt dem die Einstellungen:
 var spiel = new Phaser.Game(config);
-
+// map01 = Skyline, map02 = 
 var map01, map02, map03, map04;
 var tiles;
 var player;
 var cursors;
-var groundLayer, backgroundLayer, collectables;
+var groundLayer, backgroundLayer;
+// Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
+var itemLayerOne, itemLayerTwo, itemLayerThree;
 // Später noch Score einbauen??
 var text;
 
@@ -52,26 +54,27 @@ gameScene.init = function() {
 // Wir laden nun unsere Assets aus dem Ordner
 gameScene.preload = function() {
   
-    // Erzeuge eine TileMap durch die, zuvor angelegte tilemapTiledJSON
+    // Lade eine TileMap durch die, zuvor angelegte tilemapTiledJSON
 
-    // Erzeuge neue TileMap für :
-   // this.load.tilemapTiledJSON('', 'Assets/Worlds/');
+    // Lade neue TileMap für :
+   //this.load.tilemapTiledJSON('', 'Assets/Worlds/');
 
-    // Erzeuge neue TileMap für :
-    this.load.tilemapTiledJSON('SkyLine', 'Assets/Worlds/SkyLineJSON.json');
+    // Lade neue TileMap für Skyline Map :
+    // Aus der JSON-Datei wird auch die PNG-Datei rausgeladen.
+    this.load.tilemapTiledJSON('map', 'Assets/Worlds/SkyLine/World_Skyline.json');
 
-    // Erzeuge neue TileMap für :
+    // Lade neue TileMap für :
    // this.load.tilemapTiledJSON('', '')
 
-    // Erzeuge neue TileMap für :
+    // Lade neue TileMap für :
   //  this.load.tilemapTiledJSON('', '')
 
-    // Übergebe Tiles an Variable tiles:
-    this.load.spritesheet('MarioTiles22', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
+    // Lade Tiles des Supermario Sprite_sheets:
+    this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
 
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
-    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
+    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
 
 };
 
@@ -82,17 +85,25 @@ gameScene.create = function() {
    // Das ist die Map, die wie erzeugt haben:
    map01 = this.make.tilemap( { key : 'map'} );
 
-   tiles = map01.addTilesetImage('MarioTiles' ,'MarioTiles22');
+    // <Name in Tiled>, <Name aus spritesheet>
+   tiles = map01.addTilesetImage('Supermario_Tileset' ,'SuperMario_Tiles');
+
 
    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Hintergrund', tiles, 0, 0);
+    backgroundLayer = map01.createStaticLayer('Background', tiles, 0, 0);
+
    // Danach die Plattformen:
-    groundLayer = map01.createStaticLayer('Plattform', tiles, 0, 0);
+    groundLayer = map01.createStaticLayer('Ground', tiles, 0, 0);
+
    // Andere Tiles wie Collectables:
-    collectables = map01.createStaticLayer('Items', tiles, 0, 0 );
+    itemLayerOne = map01.createStaticLayer('Collectable_Grey', tiles, 0, 0 );
+    itemLayerTwo = map01.createStaticLayer('Collectable_Red', tiles, 0, 0);
+    itemLayerThree = map01.createStaticLayer('Collectable_Green', tiles, 0, 0);
+
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
+    
 
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
@@ -144,11 +155,11 @@ gameScene.create = function() {
 
 
     // Kamera Einstellungen
-    this.cameras.main.setBounds(0, 0, 200, 200);
+   // this.cameras.main.setBounds(0, 0, 200, 200);
 
-    this.cameras.main.startFollow(player);
+   // this.cameras.main.startFollow(player);
 
-    this.cameras.main.setBackgroundColor('#FF00FF');
+   // this.cameras.main.setBackgroundColor('#FF00FF');
 
 
     // Die im initial() angelegte Variable, wird nun zugewiesen:
@@ -169,17 +180,17 @@ gameScene.update = function () {
 
        player.body.setVelocityX(-80);
        player.anims.play('left', true);
-       // console.log("links");
+        console.log("links");
    } else if ( courserKey.right.isDown ) { // Laufe nach rechts
 
        player.body.setVelocityX(80);
        player.anims.play('right', true);
-       // console.log("rechts");
+        console.log("rechts");
    } else if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
         // Springe bei Leertaste | Pfeil nach oben
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
-       // console.log("Sprung");
+        console.log("Sprung");
    }
     else{
         player.body.setVelocityX(0);
