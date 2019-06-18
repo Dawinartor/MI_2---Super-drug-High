@@ -12,6 +12,16 @@ var config = {
             gravity : { y : 300 },
             debug : false
         }
+    },
+    audio : {
+        mute : false,
+        volumen : 1,
+        rate : 1,
+        detune : 0,
+        seek : 0,
+        loop : true,
+        delay : 0
+        
     }
 };
 
@@ -25,6 +35,7 @@ var cursors;
 var groundLayer, backgroundLayer;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
 var itemLayerOne, itemLayerTwo, itemLayerThree;
+var music;
 // Später noch Score einbauen??
 var text;
 // Test ----
@@ -78,6 +89,12 @@ gameScene.preload = function() {
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
 
+
+    // Lade Musikdateien ins Spiel:
+    this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
+    this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
+    this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
+
 };
 
 
@@ -127,7 +144,7 @@ gameScene.create = function() {
 
     // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-   backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
+    backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
    // Danach die Plattformen:
     groundLayer = map02.createStaticLayer('Ground', tilesForrest, 0, 0);
    // Andere Tiles wie Collectables:
@@ -199,6 +216,18 @@ gameScene.create = function() {
     courserKey = this.input.keyboard.createCursorKeys();
     // -> ** courserKey muss in initial() zuvor angelegt werden! **
 
+    // Array um Musikdateien nach und nach abzuspielen
+    music = new Array(5);
+   // Füge Musikdateien in das Array:
+    music[0] = this.sound.add('MenueSound');
+    music[1] = this.sound.add('HouseOfRaisingSun');
+    music[2] = this.sound.add('Halelluja');
+
+    // Mache Musik loop draus:
+    // music.setLoop(true);
+    // Musik wird abgespielt:
+    //music[1].play();
+
 }
 
 
@@ -206,30 +235,45 @@ gameScene.create = function() {
 //  -> Diese Methode wird jedes Frame aufs neue aufgerufen. Also 60x pro Sekunde.
 gameScene.update = function () {
 
-    //console.log();
+// In der Update-Abfrage nach Position des Spieler Fragen -> Je nach Level wir ander Musik gespielt.
+    if ( player.x >= 2650 || (player.x > 2650 && player.y > 800 ) ) {
+        music[1].play();
+        
+    } else {
+        music[2].play();
+    }
+
+
 
     //Wir prüfen auf Aktivität:
   if ( courserKey.left.isDown ) { // Laufe nach links
 
        player.body.setVelocityX(-80);
        player.anims.play('left', true);
-        console.log("links");
+    
    } else if ( courserKey.right.isDown ) { // Laufe nach rechts
 
        player.body.setVelocityX(80);
        player.anims.play('right', true);
-        console.log("rechts");
+    
    } else if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
         // Springe bei Leertaste | Pfeil nach oben
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
-        console.log("Sprung");
+
    }
-    else{
+    else {
         player.body.setVelocityX(0);
         player.anims.play('stay', true);
     }
 
+}
+
+// Zum Testen:
+setInterval(getPlayerPos, 2000);
+
+function getPlayerPos() {
+    console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );
 }
   
 
