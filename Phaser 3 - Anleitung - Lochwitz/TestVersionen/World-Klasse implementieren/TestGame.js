@@ -27,6 +27,8 @@ var groundLayer, backgroundLayer;
 var itemLayerOne, itemLayerTwo, itemLayerThree;
 // Später noch Score einbauen??
 var text;
+// Test ----
+var tilesTest;
 
 /* Scene life-Cycle: 
     1. inti(): Wird eine Scene gestartetn dann wird init() aufgerufen.
@@ -56,12 +58,17 @@ gameScene.preload = function() {
   
     // Lade eine TileMap durch die, zuvor angelegte tilemapTiledJSON
 
+    //Test zweck, lade Map:
+    this.load.tilemapTiledJSON('map', 'Assets/Worlds/Test_World/Map_Mario.json')
+
+    this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
+
     // Lade neue TileMap für :
    //this.load.tilemapTiledJSON('', 'Assets/Worlds/');
 
     // Lade neue TileMap für Skyline Map :
     // Aus der JSON-Datei wird auch die PNG-Datei rausgeladen.
-    this.load.tilemapTiledJSON('map', 'Assets/Worlds/SkyLine/World_Skyline.json');
+    //this.load.tilemapTiledJSON('map', 'Assets/Worlds/SkyLine/World_Skyline.json');
 
     // Lade neue TileMap für :
    // this.load.tilemapTiledJSON('', '')
@@ -70,8 +77,7 @@ gameScene.preload = function() {
   //  this.load.tilemapTiledJSON('', '')
 
     // Lade Tiles des Supermario Sprite_sheets:
-    this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
-
+    // this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
@@ -86,25 +92,25 @@ gameScene.create = function() {
    map01 = this.make.tilemap( { key : 'map'} );
 
     // <Name in Tiled>, <Name aus spritesheet>
-   tiles = map01.addTilesetImage('Supermario_Tileset' ,'SuperMario_Tiles');
+   //tiles = map01.addTilesetImage('Supermario_Tileset' ,'SuperMario_Tiles');
 
+   // Testzweck:
+   tilesTest = map01.addTilesetImage('Test_Mario', 'SuperMario_Tiles');
 
    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Background', tiles, 0, 0);
+    backgroundLayer = map01.createStaticLayer('Background', tilesTest, 0, 0);
 
    // Danach die Plattformen:
-    groundLayer = map01.createStaticLayer('Ground', tiles, 0, 0);
+    groundLayer = map01.createStaticLayer('Ground', tilesTest, 0, 0);
 
    // Andere Tiles wie Collectables:
-    itemLayerOne = map01.createStaticLayer('Collectable_Grey', tiles, 0, 0 );
-    itemLayerTwo = map01.createStaticLayer('Collectable_Red', tiles, 0, 0);
-    itemLayerThree = map01.createStaticLayer('Collectable_Green', tiles, 0, 0);
+  //  itemLayerOne = map01.createStaticLayer('Collectable_Grey', tiles, 0, 0 );
+   // itemLayerTwo = map01.createStaticLayer('Collectable_Red', tiles, 0, 0);
+    // itemLayerThree = map01.createStaticLayer('Collectable_Green', tiles, 0, 0);
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
-    
-
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
    this.physics.world.bounds.width = groundLayer.width;
