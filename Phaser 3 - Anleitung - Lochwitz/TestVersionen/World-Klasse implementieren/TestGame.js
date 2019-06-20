@@ -74,7 +74,7 @@ gameScene.preload = function() {
     // Lade neue TileMap für Skyline Map:
     this.load.tilemapTiledJSON('Skyline', 'Assets/Worlds/SkyLine/World_Skyline.json');
     // Lade neue TileMap für Forrest Map:
-    //this.load.tilemapTiledJSON('Forrest', 'Assets/Worlds/Forrest/World_Forrest.json');
+    this.load.tilemapTiledJSON('Forrest', 'Assets/Worlds/Forrest/World_Forrest.json');
     // Lade neue TileMap für City_David Map:
     // this.load.tilemapTiledJSON('', '')
     // Lade neue TileMap für CityTown Map:
@@ -83,20 +83,22 @@ gameScene.preload = function() {
 
     // Lade Tiles des Supermario Sprite_sheets:
     this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
+
     // Lade Tiles aus Forrest_panorama JPG-Datei:
     //this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
+
     // Lade Item Tiles:
-    this.load.spritesheet('Item_Tiles', 'Assets/Tiles/')
+    this.load.spritesheet('Item_Tiles', 'Assets/Items/Items_Sprite_sheet.png', {frameWidth : 25, frameHeight : 25});
 
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
 
-
     // Lade Musikdateien ins Spiel:
     this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
     this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
     this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
+    this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
 
 };
 
@@ -105,9 +107,9 @@ gameScene.preload = function() {
 gameScene.create = function() {
 
    // Erzeuge einzelnde Maps:
-    map01 = this.make.tilemap( { key : 'Skyline' } );
+    //map01 = this.make.tilemap( { key : 'Skyline' } );
 
-    //map02 = this.make.tilemap( { key : 'Forrest' } );
+    map02 = this.make.tilemap( { key : 'Forrest' } );
 
    // map03 = this.make.tilemap( { key : 'map' } );
 
@@ -117,43 +119,46 @@ gameScene.create = function() {
    //tiles = map01.addTilesetImage('Supermario_Tileset' ,'SuperMario_Tiles');
 
    // Übergebe Tileset einer Map, an tiles-Variable:
-    tilesMario = map01.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
+    tilesMario = map02.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
+
+    // Tileset Items:
+    //tilesItem = map02.addTilesetImage('Item','')
 
     // Übergebe Tileset einer Map, an tiles-Variable:
-    //tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles'); // Muss ein zweites TileSet hinzugefügt werden?
+    tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles'); // Muss ein zweites TileSet hinzugefügt werden?
 
 // -------------- Layer-Konfiguration für map01 ---------------
 
    // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Background', tilesMario, 0, 0);
+   // backgroundLayer = map01.createStaticLayer('Background', tilesMario, 0, 0);
+  
    // Danach die Plattformen:
-    groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
+   // groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
+  
    // Andere Tiles wie Collectables:
-    itemLayerOne = map01.createStaticLayer('Collectable_Grey', tilesMario, 0, 0 );
-    itemLayerTwo = map01.createStaticLayer('Collectable_Green', tilesMario, 0, 0);
-    itemLayerThree = map01.createStaticLayer('Collectable_Red', tilesMario, 0, 0);
+   // itemLayerOne = map01.createStaticLayer('Collectable_Grey', tilesMario, 0, 0 );
+   // itemLayerTwo = map01.createStaticLayer('Collectable_Green', tilesMario, 0, 0);
+   // itemLayerThree = map01.createStaticLayer('Collectable_Red', tilesMario, 0, 0);
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
-    groundLayer.setCollisionByExclusion( [-1] );
+   // groundLayer.setCollisionByExclusion( [-1] );
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
-   this.physics.world.bounds.width = groundLayer.width;
-   this.physics.world.bounds.height = groundLayer.height;
+  // this.physics.world.bounds.width = groundLayer.width;
+  // this.physics.world.bounds.height = groundLayer.height;
 
    // -------------- Layer-Konfiguration für map01 ---------------
 /****  Die map01 wird gerade von der, darunter stehenden Map02, überschrieben. Deswegen sieht mann nur map02 in HTML ****/
    // -------------- Layer-Konfiguration für map02 ---------------
-/*
+
     // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
     backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
    // Danach die Plattformen:
     groundLayer = map02.createStaticLayer('Ground', tilesForrest, 0, 0);
    // Andere Tiles wie Collectables:
-    itemLayerOne = map02.createStaticLayer('Collectable_Grey', tilesForrest, 0, 0 );
-    itemLayerTwo = map02.createStaticLayer('Collectable_Green', tilesForrest, 0, 0);
-    itemLayerThree = map02.createStaticLayer('Collectable_Red', tilesForrest, 0, 0);
+   
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
@@ -161,7 +166,7 @@ gameScene.create = function() {
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
    this.physics.world.bounds.width = groundLayer.width;
    this.physics.world.bounds.height = groundLayer.height;
-*/
+
     // -------------- Layer-Konfiguration für map02 ---------------
 
    // Erzeuge Spieler für unser Spiel:
@@ -210,15 +215,11 @@ gameScene.create = function() {
     // Kamera Einstellungen
     
     camera = this.cameras.main.startFollow(player, true, 0.4, 0.4);
-    
-    
-    //camera = this.cameras.main;
+    //
     camera.setBackgroundColor('#FF00FF');
     //camera.startFollow(player);
    this.cameras.main.setBounds(0, 0, 2721, 925);
-
-   //this.cameras.main.startFollow(player);
-
+    // Hintergrundfarbe der Kamera
    this.cameras.main.setBackgroundColor('#FF00FF');
 
 
@@ -278,9 +279,7 @@ gameScene.update = function () {
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
     }
-    else{
-        console.log("Spieler X : " + player.x);
-    }
+   
     
 
 }
