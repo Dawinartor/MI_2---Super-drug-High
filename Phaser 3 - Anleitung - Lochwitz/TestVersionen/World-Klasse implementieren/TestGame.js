@@ -206,10 +206,14 @@ gameScene.create = function() {
 
 
     // Kamera Einstellungen
-    camera = this.cameras.main;
+    
+    camera = this.cameras.main.startFollow(player, true, 0.4, 0.4);
+    
+    
+    //camera = this.cameras.main;
     camera.setBackgroundColor('#FF00FF');
-    camera.startFollow(player);
-   //this.cameras.main.setBounds(0, 0, 200, 200);
+    //camera.startFollow(player);
+   this.cameras.main.setBounds(0, 0, 2728, 925);
 
    //this.cameras.main.startFollow(player);
 
@@ -262,16 +266,17 @@ gameScene.update = function () {
        player.body.setVelocityX(80);
        player.anims.play('right', true);
     
-   } else if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
+   }else {
+        player.body.setVelocityX(0);
+        player.anims.play('stay', true);
+    }
+    if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
         // Springe bei Leertaste | Pfeil nach oben
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
 
    }
-    else {
-        player.body.setVelocityX(0);
-        player.anims.play('stay', true);
-    }
+    
 
 }
 
