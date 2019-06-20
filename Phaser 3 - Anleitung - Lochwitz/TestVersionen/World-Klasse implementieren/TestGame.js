@@ -141,7 +141,7 @@ gameScene.create = function() {
    // -------------- Layer-Konfiguration für map01 ---------------
 /****  Die map01 wird gerade von der, darunter stehenden Map02, überschrieben. Deswegen sieht mann nur map02 in HTML ****/
    // -------------- Layer-Konfiguration für map02 ---------------
-
+/*
     // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
     backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
@@ -158,7 +158,7 @@ gameScene.create = function() {
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
    this.physics.world.bounds.width = groundLayer.width;
    this.physics.world.bounds.height = groundLayer.height;
-
+*/
     // -------------- Layer-Konfiguration für map02 ---------------
 
    // Erzeuge Spieler für unser Spiel:
@@ -237,10 +237,12 @@ gameScene.update = function () {
 
 // In der Update-Abfrage nach Position des Spieler Fragen -> Je nach Level wir ander Musik gespielt.
     if ( player.x >= 2650 || (player.x > 2650 && player.y > 800 ) ) {
-        music[1].play();
+        //music[1].play();
+        console.log("spiele Musik1");
         
     } else {
-        music[2].play();
+        //music[2].play();
+        console.log("spiele Musik2");
     }
 
 
