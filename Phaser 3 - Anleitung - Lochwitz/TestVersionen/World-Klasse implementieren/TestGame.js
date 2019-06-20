@@ -159,18 +159,19 @@ gameScene.preload = function() {
     backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
    // Danach die Plattformen:
     groundLayer = map02.createStaticLayer('Ground', tilesMario, 0, 0);
+    // Items im Spiel:
+    //items = map02.createObjectLayer('Hanf', tilesMario, 0, 0);
+    item_Hanf = map02.findObject( 'Item_Hanf', obj => obj.name === 'Hanf_2' );
+    items = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 0);
     
+   // this.physics.add.collider(player, groundLayer);
+   
     
 
-    item_Hanf = map02.findObject('Hanf', obj => obj.name === 'Hanf_1');
-    
-   // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
-   groundLayer.setCollisionByProperty( { collider : true} );
-    
-   
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
+    
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
    this.physics.world.bounds.width = groundLayer.width;
@@ -300,7 +301,44 @@ function getPlayerPos() {
     console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );
 }
   
-// Funtktion
+// Funtktion um Items zu erzeugen:
+
+function createItems() {
+    //create items
+    this.items = this.game.add.group();
+    this.items.enableBody = true;
+    var item;    
+    result = this.findObjectsByType('item', this.map, 'objectsLayer');
+    result.forEach(function(element){
+      this.createFromTiledObject(element, this.items);
+    }, this);
+  }
+
+  //find objects in a Tiled layer that containt a property called "type" equal to a certain value
+  function findObjectsByType (type, map, layer) {
+    var result = new Array();
+    map.objects[layer].forEach(function(element){
+      if(element.properties.type === type) {
+        //Phaser uses top left, Tiled bottom left so we have to adjust
+        //also keep in mind that the cup images are a bit smaller than the tile which is 16x16
+        //so they might not be placed in the exact position as in Tiled
+        element.y -= map.tileHeight;
+        result.push(element);
+      }      
+    });
+    return result;
+  }
+
+  //create a sprite from an object
+  function createFromTiledObject (element, group) {
+    var sprite = group.create(element.x, element.y, element.properties.sprite);
+ 
+      //copy all properties to the sprite
+      Object.keys(element.properties).forEach(function(key){
+        sprite[key] = element.properties[key];
+      });
+  }
 
 
 
+// *** Einfach den Collider auf der Grünen Wiese legen ***
