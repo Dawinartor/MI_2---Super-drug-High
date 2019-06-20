@@ -244,6 +244,7 @@ gameScene.create = function() {
 gameScene.update = function () {
 
 // In der Update-Abfrage nach Position des Spieler Fragen -> Je nach Level wir ander Musik gespielt.
+/*
     if ( player.x >= 2650 || (player.x > 2650 && player.y > 800 ) ) {
         //music[1].play();
         console.log("spiele Musik1");
@@ -252,7 +253,7 @@ gameScene.update = function () {
         //music[2].play();
         console.log("spiele Musik2");
     }
-
+*/
 
 
     //Wir prüfen auf Aktivität:
@@ -287,6 +288,7 @@ function getPlayerPos() {
     console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );
 }
   
+// Funtktion
 
 
 
