@@ -36,6 +36,7 @@ var cursors;
 var groundLayer, backgroundLayer;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
 var itemLayerOne, itemLayerTwo, itemLayerThree;
+var item_Hanf, item_Kokain, item_Teile;
 var music;
 // Später noch Score einbauen??
 var text;
@@ -85,26 +86,25 @@ gameScene.preload = function() {
     this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
 
     // Lade Tiles aus Forrest_panorama JPG-Datei:
-    //this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
+    this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
 
     // Lade Item Tiles:
     this.load.spritesheet('Item_Tiles', 'Assets/Items/Items_Sprite_sheet.png', {frameWidth : 25, frameHeight : 25});
-
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
 
     // Lade Musikdateien ins Spiel:
-    this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
-    this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
-    this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
-    this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
+  //  this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
+   // this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
+  //  this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
+   // this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
 
 };
 
 
 // Wird einmal gerufen um geladenes zu laden
-gameScene.create = function() {
+    gameScene.create = function() {
 
    // Erzeuge einzelnde Maps:
     //map01 = this.make.tilemap( { key : 'Skyline' } );
@@ -121,11 +121,13 @@ gameScene.create = function() {
    // Übergebe Tileset einer Map, an tiles-Variable:
     tilesMario = map02.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
 
+     // Übergebe Tileset einer Map, an tiles-Variable:
+     tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles');
+
     // Tileset Items:
     //tilesItem = map02.addTilesetImage('Item','')
 
-    // Übergebe Tileset einer Map, an tiles-Variable:
-    tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles'); // Muss ein zweites TileSet hinzugefügt werden?
+   
 
 // -------------- Layer-Konfiguration für map01 ---------------
 
@@ -156,8 +158,15 @@ gameScene.create = function() {
    // Erst der Hintergrund:
     backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
    // Danach die Plattformen:
-    groundLayer = map02.createStaticLayer('Ground', tilesForrest, 0, 0);
-   // Andere Tiles wie Collectables:
+    groundLayer = map02.createStaticLayer('Ground', tilesMario, 0, 0);
+
+    
+
+    item_Hanf = map02.findObject('Hanf', obj => obj.name === 'Hanf_1');
+    item_Hanf.
+   // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
+   groundLayer.setCollisionByProperty( { collider : true} );
+    
    
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
@@ -228,16 +237,16 @@ gameScene.create = function() {
     // -> ** courserKey muss in initial() zuvor angelegt werden! **
 
     // Array um Musikdateien nach und nach abzuspielen
-    music = new Array(5);
+  //  music = new Array(5);
    // Füge Musikdateien in das Array:
-    music[0] = this.sound.add('MenueSound');
-    music[1] = this.sound.add('HouseOfRaisingSun');
-    music[2] = this.sound.add('Halelluja');
+  //  music[0] = this.sound.add('MenueSound');
+ //   music[1] = this.sound.add('HouseOfRaisingSun');
+  //  music[2] = this.sound.add('Halelluja');
 
     // Mache Musik loop draus:
     // music.setLoop(true);
     // Musik wird abgespielt:
-    music[1].play();
+ //   music[1].play();
 
 }
 
