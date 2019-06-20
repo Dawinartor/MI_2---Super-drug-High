@@ -1,0 +1,20 @@
+{ "columns":3,
+ "image":"..\/Blocks&items\/PS\/Items Sprite sheet.png",
+ "imageheight":25,
+ "imagewidth":75,
+ "margin":0,
+ "name":"Items_TileSet",
+ "properties":[
+        {
+         "name":"collider",
+         "type":"bool",
+         "value":false
+        }],
+ "spacing":0,
+ "tilecount":3,
+ "tiledversion":"1.2.4",
+ "tileheight":25,
+ "tilewidth":25,
+ "type":"tileset",
+ "version":1.2
+}
