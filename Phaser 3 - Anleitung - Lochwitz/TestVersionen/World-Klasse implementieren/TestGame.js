@@ -94,7 +94,7 @@ gameScene.preload = function() {
     this.load.spritesheet('Item_Tiles', 'Assets/Items/Items_Sprite_sheet.png', {frameWidth : 25, frameHeight : 25});
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
-    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
+    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_new.png', {frameWidth : 27.8, frameHeight : 76});
 
     // Lade Musikdateien ins Spiel:
     this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
@@ -340,7 +340,7 @@ gameSceneTwo.preload = function() {
     this.load.spritesheet('Item_Tiles', 'Assets/Items/Items_Sprite_sheet.png', {frameWidth : 25, frameHeight : 25});
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
-    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_normal.png', {frameWidth : 25, frameHeight : 76});
+    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_new.png', {frameWidth : 25, frameHeight : 76});
 
     // Lade Musikdateien ins Spiel:
     this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
