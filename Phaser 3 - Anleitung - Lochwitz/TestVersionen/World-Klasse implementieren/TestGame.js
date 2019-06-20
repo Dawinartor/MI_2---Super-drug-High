@@ -85,6 +85,8 @@ gameScene.preload = function() {
     this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
     // Lade Tiles aus Forrest_panorama JPG-Datei:
     //this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
+    // Lade Item Tiles:
+    this.load.spritesheet('Item_Tiles', 'Assets/Tiles/')
 
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
