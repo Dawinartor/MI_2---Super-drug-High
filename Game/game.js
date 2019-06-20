@@ -193,7 +193,7 @@ class playGame extends Phaser.Scene {
             });
           
           
-            this.cameras.main.startFollow(spieler, true, 0.08, 0.08);
+            this.cameras.main.startFollow(spieler, true, 1, 0.08);
             this.cameras.main.setBounds(0, 0, 2700, 176);
             cursors = this.input.keyboard.createCursorKeys();
             // Items werden Collisionsabfrage hinzugefügt
