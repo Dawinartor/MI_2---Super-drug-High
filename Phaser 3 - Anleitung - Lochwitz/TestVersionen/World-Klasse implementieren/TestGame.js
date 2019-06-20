@@ -74,7 +74,7 @@ gameScene.preload = function() {
     // Lade neue TileMap für Skyline Map:
     this.load.tilemapTiledJSON('Skyline', 'Assets/Worlds/SkyLine/World_Skyline.json');
     // Lade neue TileMap für Forrest Map:
-    this.load.tilemapTiledJSON('Forrest', 'Assets/Worlds/Forrest/World_Forrest.json');
+    //this.load.tilemapTiledJSON('Forrest', 'Assets/Worlds/Forrest/World_Forrest.json');
     // Lade neue TileMap für City_David Map:
     // this.load.tilemapTiledJSON('', '')
     // Lade neue TileMap für CityTown Map:
@@ -84,7 +84,7 @@ gameScene.preload = function() {
     // Lade Tiles des Supermario Sprite_sheets:
     this.load.spritesheet('SuperMario_Tiles', 'Assets/Tiles/Supermario_TileSet.png', {frameWidth : 16, frameHeight : 16});
     // Lade Tiles aus Forrest_panorama JPG-Datei:
-    this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
+    //this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
 
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
@@ -105,7 +105,7 @@ gameScene.create = function() {
    // Erzeuge einzelnde Maps:
     map01 = this.make.tilemap( { key : 'Skyline' } );
 
-    map02 = this.make.tilemap( { key : 'Forrest' } );
+    //map02 = this.make.tilemap( { key : 'Forrest' } );
 
    // map03 = this.make.tilemap( { key : 'map' } );
 
@@ -118,7 +118,7 @@ gameScene.create = function() {
     tilesMario = map01.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
 
     // Übergebe Tileset einer Map, an tiles-Variable:
-    tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles'); // Muss ein zweites TileSet hinzugefügt werden?
+    //tilesForrest = map02.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles'); // Muss ein zweites TileSet hinzugefügt werden?
 
 // -------------- Layer-Konfiguration für map01 ---------------
 
@@ -213,7 +213,7 @@ gameScene.create = function() {
     //camera = this.cameras.main;
     camera.setBackgroundColor('#FF00FF');
     //camera.startFollow(player);
-   this.cameras.main.setBounds(0, 0, 2728, 925);
+   this.cameras.main.setBounds(0, 0, 2722, 925);
 
    //this.cameras.main.startFollow(player);
 
@@ -234,7 +234,7 @@ gameScene.create = function() {
     // Mache Musik loop draus:
     // music.setLoop(true);
     // Musik wird abgespielt:
-    //music[1].play();
+    music[1].play();
 
 }
 
@@ -275,8 +275,10 @@ gameScene.update = function () {
         // Springe bei Leertaste | Pfeil nach oben
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
-
-   }
+    }
+    else{
+        console.log("Spieler X : " + player.x);
+    }
     
 
 }
