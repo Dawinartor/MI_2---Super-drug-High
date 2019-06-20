@@ -159,11 +159,11 @@ gameScene.preload = function() {
     backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
    // Danach die Plattformen:
     groundLayer = map02.createStaticLayer('Ground', tilesMario, 0, 0);
-
+    
     
 
     item_Hanf = map02.findObject('Hanf', obj => obj.name === 'Hanf_1');
-    item_Hanf.
+    
    // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
    groundLayer.setCollisionByProperty( { collider : true} );
     

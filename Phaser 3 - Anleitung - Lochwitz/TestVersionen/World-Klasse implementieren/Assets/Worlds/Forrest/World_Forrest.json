@@ -2493,6 +2493,32 @@
                         }]
                 }],
          "tilewidth":16
+        }, 
+        {
+         "columns":168,
+         "firstgid":9637,
+         "image":"Forrest_panorama.jpg",
+         "imageheight":900,
+         "imagewidth":2700,
+         "margin":0,
+         "name":"ffff",
+         "spacing":0,
+         "tilecount":9408,
+         "tileheight":16,
+         "tilewidth":16
+        }, 
+        {
+         "columns":4,
+         "firstgid":19045,
+         "image":"..\/..\/Items\/Items_Sprite_sheet.png",
+         "imageheight":25,
+         "imagewidth":75,
+         "margin":0,
+         "name":"lll",
+         "spacing":0,
+         "tilecount":4,
+         "tileheight":16,
+         "tilewidth":16
         }],
  "tilewidth":16,
  "type":"map",
