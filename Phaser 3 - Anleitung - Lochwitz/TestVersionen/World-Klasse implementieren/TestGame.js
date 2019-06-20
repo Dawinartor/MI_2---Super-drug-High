@@ -213,7 +213,7 @@ gameScene.create = function() {
     //camera = this.cameras.main;
     camera.setBackgroundColor('#FF00FF');
     //camera.startFollow(player);
-   this.cameras.main.setBounds(0, 0, 2722, 925);
+   this.cameras.main.setBounds(0, 0, 2721, 925);
 
    //this.cameras.main.startFollow(player);
 
