@@ -3,8 +3,8 @@ var gameScene = new Phaser.Scene('LevelOne');
 // Scenen eigene Spiele Konfiguration:
 var config = {
     type : Phaser.AUTO, // entscheidet selbst ob WebGL | Canvas verwendet werden soll.
-    width : 2720,
-    height : 928,
+    width : 640,
+    height : 320,
     scene : gameScene, // Checkmal ab ob du hier eine Änderung machst, zweite Gamescene
     physics : {
         default : 'arcade',
@@ -31,6 +31,7 @@ var spiel = new Phaser.Game(config);
 var map01, map02, map03, map04;
 var tilesMario;
 var player;
+var camera;
 var cursors;
 var groundLayer, backgroundLayer;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
@@ -205,11 +206,14 @@ gameScene.create = function() {
 
 
     // Kamera Einstellungen
+    camera = this.cameras.main;
+    camera.setBackgroundColor('#FF00FF');
+    camera.startFollow(player);
    //this.cameras.main.setBounds(0, 0, 200, 200);
 
    //this.cameras.main.startFollow(player);
 
-   //this.cameras.main.setBackgroundColor('#FF00FF');
+   this.cameras.main.setBackgroundColor('#FF00FF');
 
 
     // Die im initial() angelegte Variable, wird nun zugewiesen:
