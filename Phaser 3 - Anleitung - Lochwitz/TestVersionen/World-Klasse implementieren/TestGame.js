@@ -76,12 +76,7 @@ gameScene.preload = function() {
 
     // Lade neue TileMap für Skyline Map:
     this.load.tilemapTiledJSON('Skyline', 'Assets/Worlds/SkyLine/World_Skyline.json');
-    // Lade neue TileMap für Forrest Map:
-    //this.load.tilemapTiledJSON('Forrest', 'Assets/Worlds/Forrest/World_Forrest.json');
-    // Lade neue TileMap für City_David Map:
-    // this.load.tilemapTiledJSON('', '')
-    // Lade neue TileMap für CityTown Map:
-    // this.load.tilemapTiledJSON('', '')
+    
 
 
     // Lade Tiles des Supermario Sprite_sheets:
@@ -101,21 +96,14 @@ gameScene.preload = function() {
     this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
     this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
     this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
-//ff
-};
 
+};
 
 // Wird einmal gerufen um geladenes zu laden
     gameScene.create = function() {
 
    // Erzeuge einzelnde Maps:
     map01 = this.make.tilemap( { key : 'Skyline' } );
-
-    //map02 = this.make.tilemap( { key : 'Forrest' } );
-
-   // map03 = this.make.tilemap( { key : 'map' } );
-
-  //  map04 = this.make.tilemap( { key : 'map' } );
 
     // <Name in Tiled>, <Name aus spritesheet>
    //tiles = map01.addTilesetImage('Supermario_Tileset' ,'SuperMario_Tiles');
@@ -124,12 +112,11 @@ gameScene.preload = function() {
     tilesMario = map01.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
 
      // Übergebe Tileset einer Map, an tiles-Variable:
-     tilesForrest = map01.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles');
+    // tilesForrest = map01.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles');
 
     // Tileset Items:
     //tilesItem = map02.addTilesetImage('Item','')
 
-   
 
 // -------------- Layer-Konfiguration für map01 ---------------
 
@@ -158,19 +145,17 @@ gameScene.preload = function() {
 
     // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Background', tilesForrest, 0, 0);
+    backgroundLayer = map01.createStaticLayer('Background', tilesMario, 0, 0);
    // Danach die Plattformen:
     groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
 
-    
 
-    item_Hanf = map01.findObject('Hanf', obj => obj.name === 'Hanf_1');
+    //item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
     //item_Hanf.
    // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
-   groundLayer.setCollisionByProperty( { collider : true} );
+  // groundLayer.setCollisionByProperty( { collider : true} );
     
    
-
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
 
@@ -474,11 +459,11 @@ gameSceneTwo.preload = function() {
     
     camera = this.cameras.main.startFollow(player, true, 0.4, 0.4);
     //
-    camera.setBackgroundColor('#FF00FF');
+  //  camera.setBackgroundColor('#FF00FF');
     //camera.startFollow(player);
    this.cameras.main.setBounds(0, 0, 2721, 925);
     // Hintergrundfarbe der Kamera
-   this.cameras.main.setBackgroundColor('#FF00FF');
+  // this.cameras.main.setBackgroundColor('#FF00FF');
 
 
     // Die im initial() angelegte Variable, wird nun zugewiesen:
