@@ -155,10 +155,11 @@ gameScene.preload = function() {
 
     item_Test = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 0);
     item_Test.setCollideWorldBounds(true);
-
-// Funtktion effekt Item:
-
     this.physics.add.collider(item_Test, groundLayer);
+
+
+    
+   // item_Hanf.setCollisionByProperty({ collider: true });
 
   // this.physics.add.overlap(player, item_Test, item_HanfEffekt, null, this);
 
