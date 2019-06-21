@@ -101,7 +101,7 @@ gameScene.preload = function() {
     this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
     this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
     this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
-
+//ff
 };
 
 
@@ -407,18 +407,19 @@ gameSceneTwo.preload = function() {
     backgroundLayer = map02.createStaticLayer('Background', tilesForrest, 0, 0);
    // Danach die Plattformen:
     groundLayer = map02.createStaticLayer('Ground', tilesMario, 0, 0);
-
+    // Items im Spiel:
+    //items = map02.createObjectLayer('Hanf', tilesMario, 0, 0);
+    item_Hanf = map02.findObject( 'Item_Hanf', obj => obj.name === 'Hanf_2' );
+    items = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 0);
     
-
-    item_Hanf = map02.findObject('Hanf', obj => obj.name === 'Hanf_1');
-    //item_Hanf.
-   // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
-   groundLayer.setCollisionByProperty( { collider : true} );
-    
+   // this.physics.add.collider(player, groundLayer);
    
+    
+
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
     groundLayer.setCollisionByExclusion( [-1] );
+    
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
    this.physics.world.bounds.width = groundLayer.width;
@@ -542,4 +543,4 @@ gameSceneTwo.update = function () {
 }
 
 
-
+// *** Einfach den Collider auf der Grünen Wiese legen ***
