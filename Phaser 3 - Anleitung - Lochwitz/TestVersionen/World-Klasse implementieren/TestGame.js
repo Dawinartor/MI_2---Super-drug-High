@@ -124,7 +124,7 @@ gameScene.preload = function() {
     tilesMario = map01.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
 
      // Übergebe Tileset einer Map, an tiles-Variable:
-     tilesForrest = map01.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles');
+    // tilesForrest = map01.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles');
 
     // Tileset Items:
     //tilesItem = map02.addTilesetImage('Item','')
@@ -158,13 +158,13 @@ gameScene.preload = function() {
 
     // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Background', tilesForrest, 0, 0);
+    backgroundLayer = map01.createStaticLayer('Background', tilesMario, 0, 0);
    // Danach die Plattformen:
     groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
 
 
-    item_Hanf = map01.findObject('Hanf', obj => obj.name === 'Hanf_1');
-    //item_Hanf.
+    item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
+    console.log(item_Hanf);
    // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
    groundLayer.setCollisionByProperty( { collider : true} );
     
@@ -238,16 +238,16 @@ gameScene.preload = function() {
     // -> ** courserKey muss in initial() zuvor angelegt werden! **
 
     // Array um Musikdateien nach und nach abzuspielen
-    music = new Array(5);
+   // music = new Array(5);
    // Füge Musikdateien in das Array:
-    music[0] = this.sound.add('MenueSound');
-    music[1] = this.sound.add('HouseOfRaisingSun');
-    music[2] = this.sound.add('Halelluja');
+  //  music[0] = this.sound.add('MenueSound');
+  //  music[1] = this.sound.add('HouseOfRaisingSun');
+  //  music[2] = this.sound.add('Halelluja');
 
     // Mache Musik loop draus:
-    music[1].setLoop(true);
+  //  music[1].setLoop(true);
     // Musik wird abgespielt:
-    music[1].play();
+   // music[1].play();
 
 }
 
@@ -290,7 +290,7 @@ gameScene.update = function () {
     }
     if(player.x >= 2700){
         this.scene.start(gameSceneTwo);
-        music[1].stop();
+     //   music[1].stop();
     }
     
 
