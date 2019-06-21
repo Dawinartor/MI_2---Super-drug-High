@@ -89,6 +89,7 @@ gameScene.preload = function() {
 
     // Lade Tiles aus Forrest_panorama JPG-Datei:
     //this.load.spritesheet('Forrest_Tiles', 'Assets/Tiles/Forrest_panorama.jpg', {frameWidth : 16, frameHeight : 16});
+    this.load.spritesheet('Sky_Tiles', 'Assets/Worlds/SkyLine/Background panorama.jpg',{frameWidth : 16, frameHeight:16});
 
     // Lade Item Tiles:
     this.load.spritesheet('Item_Tiles', 'Assets/Items/Items_Sprite_sheet.png', {frameWidth : 25, frameHeight : 25});
@@ -124,7 +125,7 @@ gameScene.preload = function() {
     tilesMario = map01.addTilesetImage('Supermario_TileSet', 'SuperMario_Tiles');
 
      // Übergebe Tileset einer Map, an tiles-Variable:
-     tilesForrest = map01.addTilesetImage('Forrest_Tileset', 'Forrest_Tiles');
+     tilesCityTown = map01.addTilesetImage('City', 'Sky_Tiles');
 
     // Tileset Items:
     //tilesItem = map02.addTilesetImage('Item','')
@@ -158,7 +159,7 @@ gameScene.preload = function() {
 
     // Um die Layer übereinander sehen zu können müssen diese von hinten nach vorne gecoded werden:
    // Erst der Hintergrund:
-    backgroundLayer = map01.createStaticLayer('Background', tilesForrest, 0, 0);
+    backgroundLayer = map01.createStaticLayer('Background', tilesCityTown, 0, 0);
    // Danach die Plattformen:
     groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
 
