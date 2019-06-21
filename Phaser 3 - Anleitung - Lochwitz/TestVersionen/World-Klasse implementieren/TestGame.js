@@ -163,8 +163,6 @@ gameScene.preload = function() {
    // Danach die Plattformen:
     groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
 
-    var i1 = map01.findObject('Items', obj => obj.name === 'dope');
-    console.log(i1);
 
     item_Hanf = map01.findObject('Hanf', obj => obj.name === 'Hanf_1');
     //item_Hanf.
