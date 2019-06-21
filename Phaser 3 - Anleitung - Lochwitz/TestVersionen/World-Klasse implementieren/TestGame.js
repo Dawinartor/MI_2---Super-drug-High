@@ -159,6 +159,7 @@ gameScene.preload = function() {
 // Funtktion effekt Item:
 
     this.physics.add.collider(item_Test, groundLayer);
+    this.physics.add.overlap(player, item_Test, this.item_Effekt, null, this);
 
   // this.physics.add.overlap(player, item_Test, item_HanfEffekt, null, this);
 
@@ -252,7 +253,6 @@ gameScene.preload = function() {
 
 }
 
-
 // Nun lassen wir die Berechnungen immer wieder passieren, baer was soll berechnet werden?
 //  -> Diese Methode wird jedes Frame aufs neue aufgerufen. Also 60x pro Sekunde.
 gameScene.update = function () {
@@ -305,8 +305,8 @@ function getPlayerPos() {
 }
   
 // Funtktion effekt Item:
-function item_HanfEffekt(player, item_Test) {
-    item_Test.visibility(false);
+function item_Effekte(player, item_Test) {
+    item_Test.disableBody(true,true);
 }
 
 //------------------------------------------------------------------------------------------------------------------------
