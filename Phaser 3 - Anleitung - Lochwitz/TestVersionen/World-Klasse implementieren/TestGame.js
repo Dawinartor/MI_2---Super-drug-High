@@ -153,12 +153,14 @@ gameScene.preload = function() {
     
     item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
 
-    item_Test = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 2);
+    item_Test = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 0);
+    item_Test.setCollideWorldBounds(true);
 
+// Funtktion effekt Item:
 
     this.physics.add.collider(item_Test, groundLayer);
-    this.physics.add.collider(item_Test, groundLayer);
 
+  // this.physics.add.overlap(player, item_Test, item_HanfEffekt, null, this);
 
 
 
@@ -178,7 +180,7 @@ gameScene.preload = function() {
 
    // Erzeuge Spieler für unser Spiel:
    // player = 
-    player = this.physics.add.sprite(500, 500, 'Spieler_Normal');
+    player = this.physics.add.sprite(1650, 500, 'Spieler_Normal');
     player.setBounce( 0.2 ) //Player will bounce from items
     player.setCollideWorldBounds(true); // Damit der Spieler nicht außerhalb der Map gehen kann.
 
@@ -302,7 +304,11 @@ function getPlayerPos() {
     console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );
 }
   
-// Funtktion
+// Funtktion effekt Item:
+function item_HanfEffekt(player, item_Test) {
+    item_Test.visibility(false);
+}
+
 //------------------------------------------------------------------------------------------------------------------------
 
 gameSceneTwo.init = function() {
