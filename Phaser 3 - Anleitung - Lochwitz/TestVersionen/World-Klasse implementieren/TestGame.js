@@ -289,7 +289,7 @@ gameScene.update = function () {
        player.body.setVelocityY(-400);
        player.anims.play('stay', true);
     }
-    if(player.x == 2708){
+    if(player.x >= 2700){
         this.scene.start(gameSceneTwo);
         music[1].stop();
     }
@@ -340,7 +340,7 @@ gameSceneTwo.preload = function() {
     this.load.spritesheet('Item_Tiles', 'Assets/Items/Items_Sprite_sheet.png', {frameWidth : 25, frameHeight : 25});
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
-    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_new.png', {frameWidth : 25, frameHeight : 76});
+    this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_new.png', {frameWidth : 25, frameHeight : 78});
 
     // Lade Musikdateien ins Spiel:
     this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
