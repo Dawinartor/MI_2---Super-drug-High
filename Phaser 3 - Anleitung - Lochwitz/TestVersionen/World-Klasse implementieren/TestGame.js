@@ -38,7 +38,7 @@ var cursors;
 var groundLayer, backgroundLayer;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
 var itemLayerOne, itemLayerTwo, itemLayerThree;
-var item_Hanf, item_Kokain, item_Teile;
+var item_Hanf, item_Kokain, item_Teile, item_Test;
 var music;
 // Später noch Score einbauen??
 var text;
@@ -162,9 +162,11 @@ gameScene.preload = function() {
    // Danach die Plattformen:
     groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
 
-
+    
     item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
-    console.log(item_Hanf);
+    item_Hanf_zwei = map01.findObject('Items', obj => obj.name === 'dope2');
+    item_Test = this.physics.add.sprite(item_Hanf_zwei.x, item_Hanf_zwei.y, 'Item_Tiles', 1);
+    console.log(item_Hanf_zwei);
    // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
    groundLayer.setCollisionByProperty( { collider : true} );
     
@@ -297,7 +299,7 @@ gameScene.update = function () {
 }
 
 // Zum Testen:
-setInterval(getPlayerPos, 2000);
+setInterval(getPlayerPos, 4000);
 
 function getPlayerPos() {
     console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );

@@ -33,9 +33,9 @@
          "name":"Items",
          "objects":[
                 {
-                 "gid":29,
+                 "gid":127,
                  "height":16,
-                 "id":1,
+                 "id":2,
                  "name":"dope",
                  "properties":[
                         {
@@ -47,8 +47,26 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":1614,
-                 "y":424
+                 "x":1486,
+                 "y":860
+                }, 
+                {
+                 "gid":10,
+                 "height":16,
+                 "id":3,
+                 "name":"dope2",
+                 "properties":[
+                        {
+                         "name":"collider",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":1702,
+                 "y":822
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -57,7 +75,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":2,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.4",
