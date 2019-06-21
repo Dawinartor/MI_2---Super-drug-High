@@ -45,20 +45,6 @@ var text;
 // Test ----
 var tilesMario, tilesForrest, tilesCity_David, tilesCityTown;
 
-/* Scene life-Cycle: 
-    1. inti(): Wird eine Scene gestartetn dann wird init() aufgerufen.
-    - Nächster Schritt -
-    2. preload(): Alle vorhandenen Daten/Grafiken werden mit diesem Call geladen
-    - Nächster Schritt -
-    3. create(): Die geladenen Daten werden platziert. Also alles
-                 was nun geladen wurde bekommt seinen Platz im Spiel
-    - Nächster Schritt / Während des Spiels laufender Schritt -
-    4. update(): Dise Methode lässt das Spiel immer wieder updaten
-                 also macht aus der Mathematik die hier drin steckt
-                 ein immer wieder berechnendes Bild. 
-                 Default ist es auf 60x pro Sekunde gestellt: 60 FPS
-
-*/
 
 // Initialisieren grundlegende Dinge, die im späteren Verlauf wichtig werden.
 gameScene.init = function() {
@@ -101,7 +87,9 @@ gameScene.preload = function() {
     this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
     this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
     this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
-//ff
+
+    // Test um atlas zu laden:
+    
 };
 
 
@@ -164,11 +152,18 @@ gameScene.preload = function() {
 
     
     item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
-    item_Hanf_zwei = map01.findObject('Items', obj => obj.name === 'dope2');
-    item_Test = this.physics.add.sprite(item_Hanf_zwei.x, item_Hanf_zwei.y, 'Item_Tiles', 1);
-    console.log(item_Hanf_zwei);
+
+    item_Test = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 2);
+
+
+    this.physics.add.collider(item_Test, groundLayer);
+    this.physics.add.collider(item_Test, groundLayer);
+
+
+
+
    // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
-   groundLayer.setCollisionByProperty( { collider : true} );
+  // item_Hanf.setCollisionByProperty( { collider : true} );
     
    
 
@@ -222,6 +217,8 @@ gameScene.preload = function() {
 
    // Gib an, dass der SPieler mit dem Grund Kollidieren kann:
    this.physics.add.collider(groundLayer, player);
+   this.physics.add.collider(groundLayer, item_Teile);
+
 
 
     // Kamera Einstellungen
