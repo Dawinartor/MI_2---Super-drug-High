@@ -36,9 +36,10 @@ var player;
 var camera;
 var cursors;
 var groundLayer, backgroundLayer;
+var geschwindgkeit = 160;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
 var itemLayerOne, itemLayerTwo, itemLayerThree;
-var item_Hanf, item_Kokain, item_Teile, item_Test;
+var item_Hanf,item_HanfZwei,item_HanfDrei,item_Kokain, item_KokainZwei, item_Teile, item_TeileZwei, itemHanfOne, itemHanfTwo, itemHanfThree, itemKoksOne, itemKoksTwo, itemTeilOne, itemTeilTwo;
 var music;
 // Später noch Score einbauen??
 var text;
@@ -152,21 +153,54 @@ gameScene.preload = function() {
 
     
     item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
-
-    item_Test = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 0);
-    item_Test.setCollideWorldBounds(true);
+    item_HanfZwei = map01.findObject('Items', obj => obj.name == 'dope2');
+    item_HanfDrei = map01.findObject('Items', obj => obj.name == 'dope3');
+    
+    item_Kokain = map01.findObject('Items', obj => obj.name == 'koks');
+    item_KokainZwei = map01.findObject('Items', obj => obj.name == 'koks2');
+        
+    item_Teile = map01.findObject('Items', obj => obj.name === 'teil');
+    item_TeileZwei = map01.findObject('Items', obj => obj.name === 'teil2');
+        
+    itemHanfOne = this.physics.add.sprite(item_Hanf.x, item_Hanf.y, "Item_Tiles", 0);
+    itemHanfTwo = this.physics.add.sprite(item_HanfZwei.x, item_HanfZwei.y, "Item_Tiles",0);
+    itemHanfThree = this.physics.add.sprite(item_HanfDrei.x, item_HanfDrei.y, "Item_Tiles",0);
+    
+    itemKoksOne = this.physics.add.sprite(item_Kokain.x, item_Kokain.y, "Item_Tiles", 1);
+    itemKoksTwo = this.physics.add.sprite(item_KokainZwei.x, item_KokainZwei.y, "Item_Tiles", 1);
+    
+    itemTeilOne = this.physics.add.sprite(item_Teile.x, item_Teile.y, "Item_Tiles", 2);
+    itemTeilTwo = this.physics.add.sprite(item_TeileZwei.x, item_TeileZwei.y, "Item_Tiles", 2);
+    
+    itemHanfOne.setCollideWorldBounds(true);
+    itemHanfTwo.setCollideWorldBounds(true);
+    itemHanfThree.setCollideWorldBounds(true);
+    
+    itemKoksOne.setCollideWorldBounds(true);
+    itemKoksTwo.setCollideWorldBounds(true);
+        
+    itemTeilOne.setCollideWorldBounds(true);
+    itemTeilTwo.setCollideWorldBounds(true);
 
 // Funtktion effekt Item:
-
-    this.physics.add.collider(item_Test, groundLayer);
-    this.physics.add.overlap(player, item_Test, this.item_Effekt, null, this);
+    this.physics.add.collider(itemHanfOne, groundLayer);
+    this.physics.add.collider(itemHanfTwo, groundLayer);
+    this.physics.add.collider(itemHanfThree, groundLayer);
+    
+    this.physics.add.collider(itemKoksOne, groundLayer);
+    this.physics.add.collider(itemKoksTwo, groundLayer);
+        
+    this.physics.add.collider(itemTeilOne, groundLayer);
+    this.physics.add.collider(itemTeilTwo, groundLayer);
 
   // this.physics.add.overlap(player, item_Test, item_HanfEffekt, null, this);
 
 
 
    // Spreche ObjektEbene der Tiles an: (Probiere auf beiden grund-Layern die Items)
-  // item_Hanf.setCollisionByProperty( { collider : true} );
+    /*item_Hanf.setCollisionByProperty( { collider : true} );
+    item_HanfZwei.setCollisionByProperty({collider : true});
+    item_HanfDrei.setCollisionByProperty({collider : true});*/
     
    
 
@@ -181,7 +215,7 @@ gameScene.preload = function() {
 
    // Erzeuge Spieler für unser Spiel:
    // player = 
-    player = this.physics.add.sprite(1650, 500, 'Spieler_Normal');
+    player = this.physics.add.sprite(50, 900, 'Spieler_Normal');
     player.setBounce( 0.2 ) //Player will bounce from items
     player.setCollideWorldBounds(true); // Damit der Spieler nicht außerhalb der Map gehen kann.
 
@@ -220,7 +254,7 @@ gameScene.preload = function() {
 
    // Gib an, dass der SPieler mit dem Grund Kollidieren kann:
    this.physics.add.collider(groundLayer, player);
-   this.physics.add.collider(groundLayer, item_Teile);
+   //this.physics.add.collider(groundLayer, item_Teile);
 
 
 
@@ -230,9 +264,18 @@ gameScene.preload = function() {
     //
     camera.setBackgroundColor('#FF00FF');
     //camera.startFollow(player);
-   this.cameras.main.setBounds(0, 0, 2721, 925);
+    this.cameras.main.setBounds(0, 0, 2721, 925);
     // Hintergrundfarbe der Kamera
-   this.cameras.main.setBackgroundColor('#FF00FF');
+    this.cameras.main.setBackgroundColor('#FF00FF');
+    this.physics.add.overlap(player, itemHanfOne, item_Effekte, null, this);
+    this.physics.add.overlap(player, itemHanfTwo, item_Effekte, null, this);
+    this.physics.add.overlap(player, itemHanfThree, item_Effekte, null, this);
+    
+    this.physics.add.overlap(player, itemKoksOne, item_EffekteTwo, null, this);
+    this.physics.add.overlap(player, itemKoksTwo, item_EffekteTwo, null, this);
+        
+    this.physics.add.overlap(player, itemTeilOne, item_EffekteThree, null, this);
+    this.physics.add.overlap(player, itemTeilTwo, item_EffekteThree, null, this);
 
 
     // Die im initial() angelegte Variable, wird nun zugewiesen:
@@ -258,26 +301,16 @@ gameScene.preload = function() {
 gameScene.update = function () {
 
 // In der Update-Abfrage nach Position des Spieler Fragen -> Je nach Level wir ander Musik gespielt.
-/*
-    if ( player.x >= 2650 || (player.x > 2650 && player.y > 800 ) ) {
-        //music[1].play();
-        console.log("spiele Musik1");
-        
-    } else {
-        //music[2].play();
-        console.log("spiele Musik2");
-    }
-*/
-   
+
     //Wir prüfen auf Aktivität:
   if ( courserKey.left.isDown ) { // Laufe nach links
 
-       player.body.setVelocityX(-80);
+       player.body.setVelocityX(- geschwindgkeit);
        player.anims.play('left', true);
     
    } else if ( courserKey.right.isDown ) { // Laufe nach rechts
 
-       player.body.setVelocityX(80);
+       player.body.setVelocityX(geschwindgkeit);
        player.anims.play('right', true);
     
    }else {
@@ -286,7 +319,7 @@ gameScene.update = function () {
     }
     if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
         // Springe bei Leertaste | Pfeil nach oben
-       player.body.setVelocityY(-400);
+       player.body.setVelocityY(-250);
        player.anims.play('stay', true);
     }
     if(player.x >= 2700){
@@ -307,6 +340,16 @@ function getPlayerPos() {
 // Funtktion effekt Item:
 function item_Effekte(player, item_Test) {
     item_Test.disableBody(true,true);
+    geschwindgkeit = 80;
+}
+
+function item_EffekteTwo(player, item_Test) {
+    item_Test.disableBody(true,true);
+    geschwindgkeit = 80;
+}
+function item_EffekteThree(player, item_Test) {
+    item_Test.disableBody(true,true);
+    geschwindgkeit = 80;
 }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -422,7 +465,7 @@ gameSceneTwo.preload = function() {
 
 
     // Mit welchem Layer <hier groundLayer> Soll der Player Kollidieren
-    groundLayer.setCollisionByExclusion( [-1] );
+    //groundLayer.setCollisionByExclusion( [-1] );
     
 
    // Setzten wir Limits, damit der Spieler nicht über die Ränder hinaus laufen kann
