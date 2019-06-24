@@ -37,6 +37,7 @@ var camera;
 var cursors;
 var groundLayer, backgroundLayer;
 var geschwindgkeit = 160;
+var sprung = 250;
 var counter = 0;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
 var itemLayerOne, itemLayerTwo, itemLayerThree;
@@ -44,6 +45,7 @@ var item_Hanf,item_HanfZwei,item_HanfDrei,item_Kokain, item_KokainZwei, item_Tei
 var music;
 // Später noch Score einbauen??
 var text;
+var filter, filterStaerke = 0;
 // Test ----
 var tilesMario, tilesForrest, tilesCity_David, tilesCityTown;
 
@@ -83,6 +85,9 @@ gameScene.preload = function() {
 
     // lade Daten für den Spieler - Inklusive JASON File um Animation zu machen:
     this.load.spritesheet('Spieler_Normal', 'Assets/Player/Normal_Sheet/Sprite_sheet_new.png', {frameWidth : 27.8, frameHeight : 76});
+    
+    //Lade Filter : 
+    this.load.image('Filter', 'Assets/Worlds/Filter/Trip.png');
 
     // Lade Musikdateien ins Spiel:
     this.load.audio('MenueSound', 'Assets/Music/Main_Menu.mp3');
@@ -152,8 +157,9 @@ gameScene.preload = function() {
     backgroundLayer = map01.createStaticLayer('Background', tilesMario, 0, 0);
    // Danach die Plattformen:
     groundLayer = map01.createStaticLayer('Ground', tilesMario, 0, 0);
+    filter = this.add.image(900, 900, 'Filter');
+    filter.setAlpha(filterStaerke);
 
-    
     item_Hanf = map01.findObject('Items', obj => obj.name === 'dope');
     item_HanfZwei = map01.findObject('Items', obj => obj.name == 'dope2');
     item_HanfDrei = map01.findObject('Items', obj => obj.name == 'dope3');
@@ -322,14 +328,14 @@ gameScene.update = function () {
     }
     if ( (courserKey.space.isDown || courserKey.up.isDown) && player.body.onFloor() ) {
         // Springe bei Leertaste | Pfeil nach oben
-       player.body.setVelocityY(-250);
+       player.body.setVelocityY(- sprung);
        player.anims.play('stay', true);
         music[3].play();
         
     }
-    if(player.x >= 2700){
+    if(player.x >= 2220 && player.x <= 2270 && player.y == 266 ){
         this.scene.start(gameSceneTwo);
-     //   music[1].stop();
+        music[1].stop();
     }
     
 
@@ -343,31 +349,61 @@ function getPlayerPos() {
 }
 
 // Funtktion effekt Item:
-function item_Effekte(player, item_Test) {
-    item_Test.disableBody(true,true);
-    counter++;
+//Weed
+function item_Effekte(player, itemE) {
+    itemE.disableBody(true,true);
     geschwindgkeit = 80;
+    sprung = 300;
+    counter++;
     checkGame();
+    setTimeout(doItemsStop, 18000 );
 }
 
-function item_EffekteTwo(player, item_Test) {
-    item_Test.disableBody(true,true);
-    geschwindgkeit = 80;
+//Koks
+function item_EffekteTwo(player, itemE) {
+    itemE.disableBody(true,true);
+    geschwindgkeit = 420;
+    sprung = 300;
     counter++;
     checkGame();
+    setTimeout(doItemsStop, 18000 );
 }
-function item_EffekteThree(player, item_Test) {
-    item_Test.disableBody(true,true);
+
+//Teile
+function item_EffekteThree(player, itemE) {
+    itemE.disableBody(true,true);
     geschwindgkeit = 80;
+    sprung = 200;
     counter++;
     checkGame();
+    filter.setAlpha(0.8);
+    setTimeout(doItemsStop, 18000);
+    setTimeout(doFilterStop, 18000);
 }
 function checkGame(){
     //console.log("Counter : " + counter);
-    if(counter == 3){
-        console.log("Counter : " + counter);
+    if(counter == 4){
+        //console.log("Counter : " + counter);
         location.href = "GameOver.html";
     }
+}
+
+function doFilterStop(){
+    filter.setAlpha(0.4);
+    setTimeout(beClean, 9000 );
+}
+
+function doItemsStop(){
+    geschwindgkeit = 50;
+    sprung = 100;
+    setTimeout(beClean, 9000 );
+    
+}
+
+function beClean(){
+    geschwindgkeit = 160;
+    sprung = 250;
+    filter.setAlpha(0);
 }
 
 //------------------------------------------------------------------------------------------------------------------------
