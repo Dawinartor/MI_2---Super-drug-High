@@ -37,6 +37,7 @@ var camera;
 var cursors;
 var groundLayer, backgroundLayer;
 var geschwindgkeit = 160;
+var counter = 0;
 // Drei verschiedene Arten von Collectables, um verschiedene Effekte zu realisieren:
 var itemLayerOne, itemLayerTwo, itemLayerThree;
 var item_Hanf,item_HanfZwei,item_HanfDrei,item_Kokain, item_KokainZwei, item_Teile, item_TeileZwei, itemHanfOne, itemHanfTwo, itemHanfThree, itemKoksOne, itemKoksTwo, itemTeilOne, itemTeilTwo;
@@ -88,6 +89,7 @@ gameScene.preload = function() {
     this.load.audio('HouseOfRaisingSun', 'Assets/Music/House_of_raising_sun.mp3');
     this.load.audio('Halelluja', 'Assets/Music/Halelleuja.mp3');
     this.load.audio('Country_Crack', 'Assets/Music/Country_Crack.mp3');
+    this.load.audio('Jump', 'Assets/Music/Jump.mp3');
 
     // Test um atlas zu laden:
     
@@ -283,16 +285,17 @@ gameScene.preload = function() {
     // -> ** courserKey muss in initial() zuvor angelegt werden! **
 
     // Array um Musikdateien nach und nach abzuspielen
-   // music = new Array(5);
-   // Füge Musikdateien in das Array:
-  //  music[0] = this.sound.add('MenueSound');
-  //  music[1] = this.sound.add('HouseOfRaisingSun');
-  //  music[2] = this.sound.add('Halelluja');
+        music = new Array(5);
+    //Füge Musikdateien in das Array:
+        music[0] = this.sound.add('MenueSound');
+        music[1] = this.sound.add('HouseOfRaisingSun');
+        music[2] = this.sound.add('Halelluja');
+        music[3] = this.sound.add('Jump');
 
     // Mache Musik loop draus:
-  //  music[1].setLoop(true);
+        music[1].setLoop(true);
     // Musik wird abgespielt:
-   // music[1].play();
+        music[1].play();
 
 }
 
@@ -321,6 +324,8 @@ gameScene.update = function () {
         // Springe bei Leertaste | Pfeil nach oben
        player.body.setVelocityY(-250);
        player.anims.play('stay', true);
+        music[3].play();
+        
     }
     if(player.x >= 2700){
         this.scene.start(gameSceneTwo);
@@ -336,20 +341,33 @@ setInterval(getPlayerPos, 4000);
 function getPlayerPos() {
     console.log("X - Achse: " + player.x + " - " + "Y - Achse: " + player.y );
 }
-  
+
 // Funtktion effekt Item:
 function item_Effekte(player, item_Test) {
     item_Test.disableBody(true,true);
+    counter++;
     geschwindgkeit = 80;
+    checkGame();
 }
 
 function item_EffekteTwo(player, item_Test) {
     item_Test.disableBody(true,true);
     geschwindgkeit = 80;
+    counter++;
+    checkGame();
 }
 function item_EffekteThree(player, item_Test) {
     item_Test.disableBody(true,true);
     geschwindgkeit = 80;
+    counter++;
+    checkGame();
+}
+function checkGame(){
+    //console.log("Counter : " + counter);
+    if(counter == 3){
+        console.log("Counter : " + counter);
+        location.href = "GameOver.html";
+    }
 }
 
 //------------------------------------------------------------------------------------------------------------------------
